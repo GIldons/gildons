@@ -120,7 +120,7 @@ int send_output(int fd, const void * data, int size)
 	int n = 0;
 	if(fd != -1)
 	{
-		n = write(fd, data, size);
+		n = write(fd, data, sizeof(data));
 		if(n < 0)
 		{
 			printf("Erro writing data\n");
