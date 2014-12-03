@@ -118,6 +118,8 @@ int get_input(int fd, char * data, int size)
 int send_output(int fd, const void * data, int size)
 {
 	int n = 0;
+	int j = sizeof(data);
+	printf("data size: %d\n",j);
 	if(fd != -1)
 	{
 		n = write(fd, data, sizeof(data));
