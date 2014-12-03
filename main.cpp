@@ -51,11 +51,11 @@ int main()
 	
 	turn_onoff(1);
 
-	send_output(fd, "+\n");
-	send_output(fd, "SF,1\n");
-	send_output(fd, "SS,C0000000\n");
-	send_output(fd, "SR,92000000\n");
-	send_output(fd, "R,1\n");
+	send_output(fd, "+");
+	send_output(fd, "SF,1");
+	send_output(fd, "SS,C0000000");
+	send_output(fd, "SR,92000000");
+	send_output(fd, "R,1");
 	
 	while(event.type != SDL_QUIT && exit)
 	{
