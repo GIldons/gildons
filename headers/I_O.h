@@ -7,6 +7,6 @@
 void turn_onoff(int);
 int init_serial();
 int get_input(int , char * , int );
-int send_output(int , void * , int );
+int send_output(int , const void * , int );
 
 #endif

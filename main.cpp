@@ -57,14 +57,14 @@ int main()
 	char data[20];
 	turn_onoff(1);
 
-	sprintf(buf,"+\n");
-	send_output(fd, buf,1);
-	get_input(fd, data, 4);
-	printf("%s",data);
-	sprintf(buf,"SF,1\n");
-	send_output(fd, buf,2);
-	sprintf(buf,"SS,C0000000\n");
-	send_output(fd, buf,1);
+// 	sprintf(buf,"+\n");
+	send_output(fd, "+\n",1);
+// 	get_input(fd, data, 4);
+// 	printf("%s",data);
+// 	sprintf(buf,"SF,1\n");
+// 	send_output(fd, buf,2);
+// 	sprintf(buf,"SS,C0000000\n");
+// 	send_output(fd, buf,1);
 
 
 	while(event.type != SDL_QUIT && exit)

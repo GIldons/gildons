@@ -115,7 +115,7 @@ int get_input(int fd, char * data, int size)
 	
 }
 
-int send_output(int fd, void * data, int size)
+int send_output(int fd, const void * data, int size)
 {
 	int n = 0;
 	if(fd != -1)
