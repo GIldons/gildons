@@ -27,7 +27,7 @@ int main()
 	SDL_Surface * rect = NULL;
 	
 	int * dados[] = {&fire_count, &fire_ext, &water, &lvl, &start, &reset};
-	int fd = -856;
+	int fd;
 	
 	TTF_Font *font_small = NULL, *font_big = NULL;
 	font_small = TTF_OpenFont("files/LiberationSans-BoldItalic.ttf",35);
@@ -47,7 +47,6 @@ int main()
 	
 	init_table(table, fire_count);
 	difc_table(difc_lvl, 50 + 25 * lvl);
-	printf("%d\n",fd);
 	fd = init_serial();
 	
 	turn_onoff(1);
