@@ -115,14 +115,13 @@ int get_input(int fd, char * data, int size)
 	
 }
 
-int send_output(int fd, const void * data, int size)
+int send_output(int fd, const char * data)
 {
 	int n = 0;
-	int j = sizeof(data);
-	printf("data size: %d\n",j);
+	printf("data: %d\n", (int)strlen(data));
 	if(fd != -1)
 	{
-		n = write(fd, data, sizeof(data));
+		n = write(fd, data, strlen(data));
 		if(n < 0)
 		{
 			printf("Erro writing data\n");

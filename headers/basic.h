@@ -12,9 +12,9 @@ typedef struct spot
 	int * onfire_count;
 } Spot;
 
-SDL_Surface *load_image(std::string, int alpha = 0);
+SDL_Surface *load_image(const char *, int alpha = 0);
 void apply_surface( int , int , SDL_Surface* , SDL_Surface* , SDL_Rect* = NULL );
-
+/*
 class FPS_Control
 {
 private:
@@ -25,7 +25,7 @@ public:
 	FPS_Control( int = 30 );
 	void Start();
 	void End();
-};
+};*/
 
-const char* ftoa( float );
+// const char* ftoa( float );
 #endif
