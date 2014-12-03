@@ -59,6 +59,11 @@ int main()
 
 // 	sprintf(buf,"+\n");
 	send_output(fd, "+\n",1);
+	send_output(fd, "SF,1\n",1);
+	send_output(fd, "SS,C0000000\n",1);
+	send_output(fd, "SR,92000000\n",1);
+	send_output(fd, "R,1\n",1);
+	
 // 	get_input(fd, data, 4);
 // 	printf("%s",data);
 // 	sprintf(buf,"SF,1\n");
