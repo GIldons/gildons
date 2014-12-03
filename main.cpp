@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
+#include <string.h>
 #include "headers/basic.h"
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
@@ -49,8 +50,22 @@ int main()
 	printf("%d\n",fd);
 	fd = init_serial();
 	
-	char hue[] = "huehue";
-	char ha[] = "haha";
+//	char hue[] = "+";
+//	char ha[] = "haha";
+
+	char buf[20];
+	char data[20];
+	turn_onoff(1);
+
+	sprintf(buf,"+\n");
+	send_output(fd, buf,1);
+	get_input(fd, data, 4);
+	printf("%s",data);
+	sprintf(buf,"SF,1\n");
+	send_output(fd, buf,2);
+	sprintf(buf,"SS,C0000000\n");
+	send_output(fd, buf,1);
+
 
 	while(event.type != SDL_QUIT && exit)
 	{
@@ -82,9 +97,9 @@ int main()
 			}
 			else
 			{
-				get_input(fd, hue,6);
+//				get_input(fd, hue,6);
 				fire_spread(table, fire_count);
-				send_output(fd, ha,4);
+//				send_output(fd, ha,4);
 			}
 			
 		}
@@ -96,6 +111,7 @@ int main()
 	TTF_CloseFont(font_small);
 	TTF_CloseFont(font_big);
 	SDL_Quit();
+	turn_onoff(0);
 	close(fd);
 	return 0;
 }
