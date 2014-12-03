@@ -52,15 +52,14 @@ int main()
 	turn_onoff(1);
 
 	send_output(fd, "+");
-	SDL_Delay(3);
 	send_output(fd, "SF,1");
-	SDL_Delay(3);
 	send_output(fd, "SS,C0000000");
-	SDL_Delay(3);
 	send_output(fd, "SR,92000000");
-	SDL_Delay(3);
 	send_output(fd, "R,1");
-	SDL_Delay(3);
+	SDL_Delay(250);
+	send_output(fd, "F");
+	SDL_Delay(250);
+	send_output(fd, "X");
 	
 	while(event.type != SDL_QUIT && exit)
 	{
