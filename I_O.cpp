@@ -10,7 +10,7 @@
 
 char * str = (char *)malloc(5*sizeof(char));
 
-static const char * portName = "/dev/tty2"; // Change for the right port
+static const char * portName = "/dev/ttyPS1"; // Change for the right port
 
 void turn_onoff(int on_off)
 {
