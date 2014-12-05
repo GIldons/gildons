@@ -54,17 +54,17 @@ int main()
 	difc_table(difc_lvl, 50 + 25 * lvl);
 	fd = init_serial();
 	
-// 	turn_onoff(1);
+	turn_onoff(1);
 
-// 	send_output(fd, "+");
-// 	send_output(fd, "SF,1");
-// 	send_output(fd, "SS,C0000000");
-// 	send_output(fd, "SR,92000000");
-// 	send_output(fd, "R,1");
-// 	SDL_Delay(250);
-// 	send_output(fd, "F");
-// 	SDL_Delay(250);
-// 	send_output(fd, "X");
+	send_output(fd, "+");
+	send_output(fd, "SF,1");
+	send_output(fd, "SS,C0000000");
+	send_output(fd, "SR,92000000");
+	send_output(fd, "R,1");
+	SDL_Delay(250);
+	send_output(fd, "F");
+	SDL_Delay(250);
+	send_output(fd, "X");
 	
 	screen_time = spreed_time = SDL_GetTicks();
 	while(event.type != SDL_QUIT && exit)
@@ -119,7 +119,7 @@ int main()
 	TTF_CloseFont(font_small);
 	TTF_CloseFont(font_big);
 	SDL_Quit();
-// 	turn_onoff(0);
+	turn_onoff(0);
 	close(fd);
 	return 0;
 }
