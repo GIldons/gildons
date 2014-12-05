@@ -41,18 +41,15 @@ int init()
 		return 0;
 	if( TTF_Init() == -1 )
 		return 0;
-	SDL_WM_SetCaption("FireFlight - Alpha 1 - ECE 453 Project", NULL );
+	SDL_WM_SetCaption("FireFlight - Alpha 3 - ECE 453 Project", NULL );
 	return 1;
 }
 
 int load_files()
 {
 	background = load_image ( "files/fundo.png" );
-	//font = TTF_OpenFont ( "files/geinpira.ttf", 20 );
 	if( background == NULL )
 		return 0;
-	//if( font == NULL )
-	//	return 0;
 	return 1;
 }
 
@@ -60,8 +57,6 @@ void clean_up()
 {
 	SDL_FreeSurface(background);
 	SDL_FreeSurface(screen);
-	//TTF_CloseFont (font);
-	//TTF_Quit();
 	SDL_Quit();
 }
 
@@ -84,11 +79,6 @@ void closeWindow()
 	clean_up();
 }
 
-// TTF_Font *sourceFont()
-// {
-// 	  return font;
-// }
-
 int update_display(Sint16 x, Sint16 y)
 {
 	SDL_Rect teste = {x, y, (Uint16)DISPLAY_WIDTH, (Uint16)DISPLAY_HEIGTH};
@@ -98,7 +88,7 @@ int update_display(Sint16 x, Sint16 y)
 	return 1;
 }
 
-int apply_screen(SDL_Surface ** Surfaces, Spot table[][10], int ** dados, TTF_Font ** font)
+int apply_screen(SDL_Surface ** Surfaces, Spot table[][8], int ** dados, TTF_Font ** font)
 {
 		apply_surface(0, 0, Surfaces[1], Surfaces[0]);
 		show_table(table, Surfaces[2], Surfaces[3], Surfaces[0]);

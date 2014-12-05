@@ -14,18 +14,6 @@ typedef struct spot
 
 SDL_Surface *load_image(const char *, int alpha = 0);
 void apply_surface( int , int , SDL_Surface* , SDL_Surface* , SDL_Rect* = NULL );
-/*
-class FPS_Control
-{
-private:
-	int start;
-	int end;
-	int FPS;
-public:
-	FPS_Control( int = 30 );
-	void Start();
-	void End();
-};*/
-
-// const char* ftoa( float );
+int fps(int *);
+int timer(int *, int );
 #endif

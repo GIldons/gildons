@@ -10,7 +10,7 @@ SDL_Surface *display();
 void closeWindow();
 void screen_clean();
 int update_display(Sint16 = 0, Sint16 = 0);
-int apply_screen(SDL_Surface **, Spot [][10], int **, TTF_Font **);
+int apply_screen(SDL_Surface **, Spot [][8], int **, TTF_Font **);
 //TTF_Font *sourceFont();
 
 #endif

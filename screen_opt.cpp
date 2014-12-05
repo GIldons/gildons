@@ -63,9 +63,26 @@ void screen_text(SDL_Surface ** Surfaces, int ** dados, TTF_Font ** font)
 		SDL_FreeSurface(stemp);
 	}
 	free(temp);
+	
+	apply_surface(600, 100, Surfaces[5], Surfaces[0]);
 }
 
-void mouse_events(SDL_Event &event, int ** dados)
+//Temporary function until SDL Screen is not implemented - FINAL
+void show_table(Spot table[][8], SDL_Surface * tree, SDL_Surface * tree_fire, SDL_Surface * screen)
+{
+	int i, j;
+	int off_x = 350, off_y = 130;
+	for(j = 0; j < 8; j++)
+		for(i = 0; i < 8; i++)
+		{
+			if(table[i][j].fire_lvl == 0)
+				apply_surface( off_x + i*45, off_y + j*50, tree, screen);
+			else if(table[i][j].fire_lvl == 1)
+				apply_surface( off_x + i*45, off_y + j*50, tree_fire, screen);
+		}
+}
+
+void mouse_events(SDL_Event &event, int ** dados, Spot table[][8], int teste_mode)
 {
 	int x, y;
 	if(event.type == SDL_MOUSEBUTTONDOWN)
@@ -84,6 +101,30 @@ void mouse_events(SDL_Event &event, int ** dados)
 				*(dados[4]) = !*(dados[4]);
 			if(( x > 100) && ( x < (100 + 165) ) && ( y > 525) && ( y < (525 + 50)))
 				*(dados[5]) = 1;
+			
+			//Use user input over the title to change status
+			if(teste_mode)
+			{
+				int i, j;
+				int off_x = 350, off_y = 130;
+				if((x > off_x) && (x < off_x + 45*8) && (y > off_y) && (y < off_y + 50*8))
+				{
+					i = (x - off_x)/45;
+					j = (y - off_y)/50;
+					if(table[i][j].fire_lvl == 0)
+					{
+						table[i][j].fire_lvl = 1;
+						if( (*dados[0]) >= 0 )
+							(*dados[0])=(*dados[0]) + 1;
+					}
+					else if(table[i][j].fire_lvl == 1)
+					{
+						table[i][j].fire_lvl = 0;
+						if( *(dados[0]) <= 36 )
+							*(dados[0])=(*dados[0]) - 1;
+					}
+				}
+			}
 		}
 	}
 }

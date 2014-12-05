@@ -37,28 +37,21 @@ void apply_surface(int x, int y, SDL_Surface* source, SDL_Surface* destination, 
 	SDL_BlitSurface( source, clip, destination, &offset );
 }
 
-// FPS_Control::FPS_Control(int fps)
-// {
-// 	FPS = fps;
-// }
-// 
-// void FPS_Control::Start()
-// {
-// 	start = SDL_GetTicks();
-// }
-// 
-// void FPS_Control::End()
-// {
-// 	end = SDL_GetTicks();
-// 	if( (1000/FPS) > ( end - start ) )
-// 		SDL_Delay( (1000/FPS ) - ( end - start ) );
-// }
+int fps(int * start)
+{
+	int end = SDL_GetTicks();
+	if( (1000/30) > ( end - *start ) )
+		return 0;
+	
+	*start = SDL_GetTicks();
+	return 1;
+}
 
-// const char* ftoa( float ftoa_f )
-// { 
-// 	std::stringstream ftoa_ss;
-// 	ftoa_ss << ftoa_f;
-// 	std::string ftoa_c;
-// 	ftoa_c = ftoa_ss.str();
-// 	return ftoa_c.c_str();
-// }
+int timer(int * start, int time)
+{
+	int end = SDL_GetTicks();
+	if( time > ( end - *start ) )
+		return 0;
+	*start = SDL_GetTicks();
+	return 1;
+}

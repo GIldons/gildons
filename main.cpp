@@ -15,16 +15,20 @@
 
 SDL_Event event;
 
+#define GAMETIME 1000
+
 int main()
 {
 	int exit = 1, fire_count = 0, fire_ext = 0, start = 0, water = 100, lvl = 0, temp;
+	int screen_time = 0, spreed_time = 0; 
 	int reset = 0, difc_lvl[100];
-	Spot table[10][10];
+	Spot table[8][8];
 	SDL_Surface * screen = make_screen();
 	SDL_Surface * back = NULL;
 	SDL_Surface * tree = NULL;
 	SDL_Surface * tree_fire = NULL;
 	SDL_Surface * rect = NULL;
+	SDL_Surface * plexus = NULL;
 	
 	int * dados[] = {&fire_count, &fire_ext, &water, &lvl, &start, &reset};
 	int fd;
@@ -42,8 +46,9 @@ int main()
 	tree = load_image("files/trees_2.png",1);
 	tree_fire = load_image("files/trees_fire_2.png",1);
 	rect = load_image("files/rect.png",1);
+	plexus = load_image("files/plexus2.png",1);
 	
-	SDL_Surface * Surfaces[] = {screen, back, tree, tree_fire, rect};
+	SDL_Surface * Surfaces[] = {screen, back, tree, tree_fire, rect, plexus};
 	
 	init_table(table, fire_count);
 	difc_table(difc_lvl, 50 + 25 * lvl);
@@ -61,44 +66,52 @@ int main()
 	SDL_Delay(250);
 	send_output(fd, "X");
 	
+	screen_time = spreed_time = SDL_GetTicks();
 	while(event.type != SDL_QUIT && exit)
 	{
 		temp = lvl;
+		//Check for any User input over SDL interface
 		while(SDL_PollEvent(&event))
 		{
-			mouse_events(event, dados);
+			mouse_events(event, dados, table, 1);
 			if(temp != lvl)
 			{
 				difc_table(difc_lvl, 50 + 25 * lvl);
 				temp = lvl;
 			}
 		}
-		if(!apply_screen(Surfaces, table, dados, font))
+		
+		//Update the screen at 30 FPS
+		if(fps(&screen_time))
 		{
-			printf("Error updating screen");
-			exit = 0;
+			if(!apply_screen(Surfaces, table, dados, font))
+			{
+				printf("Error updating screen\n");
+				exit = 0;
+			}
 		}
 		
-		if(difc_lvl[rand() % 100] && start)
+		//Update the game at GAMETIME sec. based on current status
+		if(timer(&spreed_time, GAMETIME))
 		{
-			if(reset)
+			if(difc_lvl[rand() % 100] && start)
 			{
-				fire_count = fire_ext = 0;
-				water = 100;
-				init_table(table,fire_count);
-				reset = 0;
-				start = 0;
+				if(reset)
+				{
+					fire_count = fire_ext = 0;
+					water = 100;
+					init_table(table,fire_count);
+					reset = 0;
+					start = 0;
+				}
+				else
+					fire_spread(table, fire_count);
 			}
-			else
-			{
-//				get_input(fd, hue,6);
-				fire_spread(table, fire_count);
-//				send_output(fd, ha,4);
-			}
-			
 		}
-		SDL_Delay(1000);
+		SDL_Delay(1);
 	}
+	
+	//Close and free all surfaces and fds
 	SDL_FreeSurface(back);
 	SDL_FreeSurface(tree);
 	SDL_FreeSurface(tree_fire);

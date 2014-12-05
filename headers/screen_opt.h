@@ -6,6 +6,7 @@
 #include "basic.h"
 
 void screen_text(SDL_Surface **, int **, TTF_Font **);
-void mouse_events(SDL_Event &, int **);
+void mouse_events(SDL_Event &, int **, Spot [][8], int = 0);
+void show_table(Spot [][8], SDL_Surface *, SDL_Surface *, SDL_Surface *);
 
 #endif
