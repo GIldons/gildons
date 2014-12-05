@@ -8,7 +8,9 @@
 #include <termios.h> /* POSIX terminal control definitions */
 #include <string.h>
 
-static const char * portName = "/dev/ttyPS1"; // Change for the right port
+char * str = (char *)malloc(5*sizeof(char));
+
+static const char * portName = "/dev/tty2"; // Change for the right port
 
 void turn_onoff(int on_off)
 {
@@ -72,11 +74,11 @@ int init_serial()
 {
 	//Open the file descriptor for the serial port
 	int fd;
-	fd = open(portName, O_RDWR | O_NOCTTY | O_NDELAY, 0);
+	fd = open(portName, O_RDWR | O_NOCTTY | O_NDELAY);
 	if(fd == -1)
 		printf("Unable to open Serial port\n");
 	else
-		fcntl(fd,F_SETFL, 0);
+		fcntl(fd,F_SETFL, FNDELAY);
 	
 	//Set the configurations acording to datasheet
 	struct termios options;
@@ -101,13 +103,12 @@ int init_serial()
 int get_input(int fd, char * data, int size)
 {
 	int n = 0;
-	fcntl(fd, F_SETFL, FNDELAY);
 	if(fd != -1)
 	{
 		n = read(fd, data, size);
 		if(n < 0)
 		{
-			printf("Erro reading data\n");
+// 			printf("Erro reading data\n");
 			return -1;
 		}
 	}
@@ -124,9 +125,33 @@ int send_output(int fd, const char * data)
 		n = write(fd, data, strlen(data));
 		if(n < 0)
 		{
-			printf("Erro writing data\n");
+// 			printf("Erro writing data\n");
 			return -1;
 		}
 	}
 	return 0;
+}
+
+void teste(Spot table[][8], int fd)
+{
+	
+	int test = atoi(str);
+	int test2;
+	get_input(fd, str, sizeof(char));
+	test2 = atoi(str);
+	if( test != test2)
+		printf("Str aoit: %d\n", test2);
+	if(test == 1)
+		table[1][1].fire_lvl = !table[1][1].fire_lvl;
+	if(test == 2)
+		table[2][2].fire_lvl = !table[2][2].fire_lvl;
+	if(test == 3)
+		table[3][3].fire_lvl = 1;//!table[3][3].fire_lvl;
+	if(test == 4)
+		table[4][4].fire_lvl = !table[4][4].fire_lvl;
+	if(test == 5)
+		table[5][5].fire_lvl = !table[5][5].fire_lvl;
+	if(test == 6)
+		table[6][6].fire_lvl = !table[6][6].fire_lvl;
+
 }
