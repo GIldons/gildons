@@ -108,7 +108,7 @@ int main()
 					fire_spread(table, fire_count);
 			}
 		}
-		SDL_Delay(1);
+		SDL_Delay(.1);
 	}
 	
 	//Close and free all surfaces and fds
