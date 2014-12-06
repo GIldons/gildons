@@ -10,6 +10,7 @@ typedef struct spot
 	int fire_lvl;
 	int * ext_count;
 	int * onfire_count;
+	int ID;
 } Spot;
 
 SDL_Surface *load_image(const char *, int alpha = 0);

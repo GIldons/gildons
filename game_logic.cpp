@@ -20,6 +20,7 @@
 #define W 8
 
 //Set real spots with 0, for no fire, and auxliary spots with -1
+//Use j for line and i for collum
 void init_table(Spot table[][8], int &fire_count)
 {
 	int i, j;
@@ -33,6 +34,43 @@ void init_table(Spot table[][8], int &fire_count)
 			else
 				table[i][j].fire_lvl = 0;
 		}
+		table[1][1].ID = 0xCB;
+		table[2][1].ID = 0xCD;
+		table[3][1].ID = 0xCF;
+		table[4][1].ID = 0xD1;
+		table[5][1].ID = 0xD3;
+		table[6][1].ID = 0xD5;
+		table[1][2].ID = 0xBB;
+		table[2][2].ID = 0xBD;
+		table[3][2].ID = 0xBF;
+		table[4][2].ID = 0xC5;
+		table[5][2].ID = 0xC7;
+		table[6][2].ID = 0xC9;
+		table[1][3].ID = 0xAF;
+		table[2][3].ID = 0xB1;
+		table[3][3].ID = 0xB3;
+		table[4][3].ID = 0xB5;
+		table[5][3].ID = 0xB7;
+		table[6][3].ID = 0xB9;
+		table[1][4].ID = 0xA3;
+		table[2][4].ID = 0xA5;
+		table[3][4].ID = 0xA7;
+		table[4][4].ID = 0xA9;
+		table[5][4].ID = 0xAB;
+		table[6][4].ID = 0xAD;
+		table[1][5].ID = 0x95;
+		table[2][5].ID = 0x97;
+		table[3][5].ID = 0x99;
+		table[4][5].ID = 0x9B;
+		table[5][5].ID = 0x9D;
+		table[6][5].ID = 0x9F;
+		table[1][6].ID = 0x89;
+		table[2][6].ID = 0x88;
+		table[3][6].ID = 0x8D;
+		table[4][6].ID = 0x8F;
+		table[5][6].ID = 0x91;
+		table[6][6].ID = 0x93;
+		
 	srand(time(NULL));
 	table[(rand() % 6 + 1)][(rand() % 6 + 1)].fire_lvl = 1;
 	fire_count++;
