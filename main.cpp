@@ -55,7 +55,7 @@ int main()
 	fd = init_serial();
 	
 	turn_onoff(1);
-	char * str = (char *)malloc(5*sizeof(char));
+	char str[45];
 	
 	get_input(fd,str,sizeof("CMD"));
 	send_output(fd, "+\n");
