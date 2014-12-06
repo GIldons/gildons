@@ -56,6 +56,7 @@ int main()
 	
 	turn_onoff(1);
 	char * str = (char *)malloc(5*sizeof(char));
+	
 	get_input(fd,str,sizeof("CMD"));
 	send_output(fd, "+\n");
 	SDL_Delay(500);
