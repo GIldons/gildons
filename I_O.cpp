@@ -7,6 +7,7 @@
 #include <errno.h>   /* Error number definitions */
 #include <termios.h> /* POSIX terminal control definitions */
 #include <string.h>
+#include <time.h>
 
 char * str = (char *)malloc(5*sizeof(char));
 
@@ -102,6 +103,7 @@ int init_serial()
 
 int get_input(int fd, char * s, int size)
 {
+	int timeout = 10, debug = 1;
 	char	b;
 	char	*m;
 	time_t	t0;
