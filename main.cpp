@@ -56,6 +56,7 @@ int main()
 	
 	turn_onoff(1);
 
+	SDL_Delay(500);
 	send_output(fd, "+\n");
 	SDL_Delay(500);
 	send_output(fd, "SF,1\n");
