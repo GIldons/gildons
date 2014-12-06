@@ -57,21 +57,14 @@ int main()
 	turn_onoff(1);
 
 	send_output(fd, "+\n");
-	get_input(fd,"rere",1);
 	send_output(fd, "SF,1\n");
-	get_input(fd,"rere",1);
 	send_output(fd, "SS,C0000000\n");
-	get_input(fd,"rere",1);
 	send_output(fd, "SR,92000000\n");
-	get_input(fd,"rere",1);
 	send_output(fd, "R,1\n");
-	get_input(fd,"rere",1);
 	SDL_Delay(250);
 	send_output(fd, "F\n");
-	get_input(fd,"rere",1);
 	SDL_Delay(250);
 	send_output(fd, "X\n");
-	get_input(fd,"rere",1);
 	
 	screen_time = spreed_time = SDL_GetTicks();
 	while(event.type != SDL_QUIT && exit)
