@@ -7,7 +7,7 @@
 
 void turn_onoff(int);
 int init_serial();
-int get_input(int , char * , int );
+int get_input(int , const char * , int );
 int send_output(int , const char *);
 void teste(Spot table[][8], int);
 #endif

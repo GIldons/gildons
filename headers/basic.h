@@ -2,7 +2,7 @@
 #ifndef basic_H
 #define basic_H
 
-#include <string>
+#include <string.h>
 #include "SDL/SDL.h"
 
 typedef struct spot

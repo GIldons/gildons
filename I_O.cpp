@@ -100,16 +100,16 @@ int init_serial()
 	return fd;
 }
 
-int get_input(int fd, char * data, int size)
+int get_input(int fd, const char * data, int size)
 {
 	int n = 0, i = 0;
-	char  * temp = "";
+	int temp;
 	char data_temp[50];
 	if(fd != -1)
 	{
-		while(temp != "\n")
+		while(temp != 10)
 		{
-			n = read(fd, temp, 1);
+			n = read(fd, &temp, 1);
 			if(n < 0)
 				printf("Erro reading data\n");
 			data_temp[i] = temp;
