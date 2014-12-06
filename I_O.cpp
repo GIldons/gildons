@@ -106,7 +106,7 @@ int get_input(int fd, char * data, int size)
 	char temp = ' ';
 	if(fd != -1)
 	{
-		while(temp != '\n')
+		while(temp != '\0')
 		{
 			n = read(fd, &temp, 1);
 			if(n < 0)
