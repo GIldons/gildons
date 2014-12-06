@@ -55,9 +55,7 @@ int main()
 	fd = init_serial();
 	
 	turn_onoff(1);
-	char str[45];
-	
-	get_input(fd,str,sizeof("CMD"));
+	SDL_Delay(500);
 	send_output(fd, "+\n");
 	SDL_Delay(500);
 	send_output(fd, "SF,1\n");
