@@ -55,8 +55,8 @@ int main()
 	fd = init_serial();
 	
 	turn_onoff(1);
-
-	SDL_Delay(500);
+	char * str = (char *)malloc(5*sizeof(char));
+	get_input(fd,str,sizeof("CMD"));
 	send_output(fd, "+\n");
 	SDL_Delay(500);
 	send_output(fd, "SF,1\n");
