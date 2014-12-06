@@ -100,27 +100,46 @@ int init_serial()
 	return fd;
 }
 
-int get_input(int fd, char * data, int size)
+int get_input(int fd, char * s, int size)
 {
-	int n = 0, i = 0;
-	char temp = ' ';
-	if(fd != -1)
-	{
-		while(temp != '\0')
-		{
-			n = read(fd, &temp, 1);
-			if(n < 0)
-				printf("Erro reading data\n");
-			else
-			{
-				*data = temp;
-				data++;
-			}
+	char	b;
+	char	*m;
+	time_t	t0;
+	t0 = time(NULL);
+	if (debug) printf("readStrBluART: \"");
+	m = s;
+	while (*m != '\0') {
+		read(fd, &b, sizeof (b));
+		//if (debug) printf(isgraph(b) ? "%c" : "\\%03o", b);
+		printf("\nreadStrBluART: %s", m);
+		if (*m++ != b)
+			m = s;
+		if (t0 - time(NULL) > timeout) {
+			if (debug) printf("\" ... timout\n");
+			return -1;
 		}
-		printf("Data: %s\n", data);
-		return 1;
 	}
+	if (debug) printf("\" ... match\n");
 	return 0;
+// 	int n = 0, i = 0;
+// 	char temp = ' ';
+// 	if(fd != -1)
+// 	{
+// 		while(temp != '\0')
+// 		{
+// 			n = read(fd, &temp, 1);
+// 			if(n < 0)
+// 				printf("Erro reading data\n");
+// 			else
+// 			{
+// 				*data = temp;
+// 				data++;
+// 			}
+// 		}
+// 		printf("Data: %s\n", data);
+// 		return 1;
+// 	}
+// 	return 0;
 	
 }
 
