@@ -54,10 +54,8 @@ int main()
 	difc_table(difc_lvl, 50 + 25 * lvl);
 	fd = init_serial();
 	
-// 	char * buff = (char *)malloc(sizeof(char)*50);
-	
 	turn_onoff(1);
-// 	get_input(fd, "CMD", sizeof("CMD"));
+	SDL_Delay(500);
 	send_output(fd, "+\n");
 	SDL_Delay(500);
 	send_output(fd, "SF,1\n");
