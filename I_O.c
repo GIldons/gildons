@@ -115,7 +115,6 @@ void get_input(int fd, char * data, int size)
 			{
 				data[i] = temp;
 				i++;
-				temp++;
 			}
 		}
 		data[i+1] = '\0';
