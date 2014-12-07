@@ -21,7 +21,7 @@
 
 //Set real spots with 0, for no fire, and auxliary spots with -1
 //Use j for line and i for collum
-void init_table(Spot table[][8], int * fire_count)
+void init_table(Spot table[][8], int ** dados)
 {
 	int i, j;
 	for(i = 0; i < 8; i++)
@@ -73,7 +73,13 @@ void init_table(Spot table[][8], int * fire_count)
 		
 	srand(time(NULL));
 	table[(rand() % 6 + 1)][(rand() % 6 + 1)].fire_lvl = 1;
-	*fire_count = 1;
+	*(dados[0]) = 1;
+	*(dados[1]) = 0;
+	*(dados[2]) = 100;
+	*(dados[4]) = 0;
+	*(dados[5]) = 0;
+// 	*fire_count = 1;
+// 	{&fire_count, &fire_ext, &water, &lvl, &start, &reset};
 }
 
 //Until this point, the next fire spot is calculated here, but the idea is change this to an random
@@ -99,7 +105,7 @@ void fire_spread(Spot table[][8], int  * fire_count)
 							{
 								table[i-1][j-1].fire_lvl++;
 								exit = 1;
-								fire_count++;
+								*fire_count = *fire_count + 1;
 							}
 							break;
 						case N:
@@ -107,7 +113,7 @@ void fire_spread(Spot table[][8], int  * fire_count)
 							{
 								table[i-1][j].fire_lvl++;
 								exit = 1;
-								fire_count++;
+								*fire_count = *fire_count + 1;
 							}
 								break;
 						case NE:
@@ -115,7 +121,7 @@ void fire_spread(Spot table[][8], int  * fire_count)
 							{
 								table[i-1][j+1].fire_lvl++;
 								exit = 1;
-								fire_count++;
+								*fire_count = *fire_count + 1;
 							}
 								break;
 						case E:
@@ -123,7 +129,7 @@ void fire_spread(Spot table[][8], int  * fire_count)
 							{
 								table[i][j+1].fire_lvl++;
 								exit = 1;
-								fire_count++;
+								*fire_count = *fire_count + 1;
 							}
 								break;
 						case SE:
@@ -131,7 +137,7 @@ void fire_spread(Spot table[][8], int  * fire_count)
 							{
 								table[i+1][j+1].fire_lvl++;
 								exit = 1;
-								fire_count++;
+								*fire_count = *fire_count + 1;
 							}
 								break;
 						case S:
@@ -139,7 +145,7 @@ void fire_spread(Spot table[][8], int  * fire_count)
 							{
 								table[i+1][j].fire_lvl++;
 								exit = 1;
-								fire_count++;
+								*fire_count = *fire_count + 1;
 							}
 								break;
 						case SW:
@@ -147,7 +153,7 @@ void fire_spread(Spot table[][8], int  * fire_count)
 							{
 								table[i+1][j-1].fire_lvl++;
 								exit = 1;
-								fire_count++;
+								*fire_count = *fire_count + 1;
 							}
 								break;
 						case W:
@@ -155,7 +161,7 @@ void fire_spread(Spot table[][8], int  * fire_count)
 							{
 								table[i][j-1].fire_lvl++;
 								exit = 1;
-								fire_count++;
+								*fire_count = *fire_count + 1;
 							}
 								break;
 						default:

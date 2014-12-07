@@ -50,7 +50,7 @@ int main()
 	
 	SDL_Surface * Surfaces[] = {screen, back, tree, tree_fire, rect, plexus};
 	
-	init_table(table, &fire_count);
+	init_table(table, dados);
 	difc_table(difc_lvl, 50 + 25 * lvl);
 	fd = init_serial();
 	
@@ -59,7 +59,7 @@ int main()
 	turn_onoff(1);
 	SDL_Delay(3);
 	send_output(fd, "+\n");
-	get_input(fd, buff, 4);
+	get_input(fd, buff);
 	SDL_Delay(1);
 	send_output(fd, "SF,1\n");
 	SDL_Delay(1);
@@ -68,6 +68,7 @@ int main()
 	send_output(fd, "SR,92000000\n");
 	SDL_Delay(1);
 	send_output(fd, "R,1\n");
+	SDL_Delay(10);
 	SDL_Delay(1);
 	send_output(fd, "F\n");
 	SDL_Delay(1);
@@ -104,13 +105,7 @@ int main()
 			if(difc_lvl[rand() % 100] && start)
 			{
 				if(reset)
-				{
-					fire_count = fire_ext = 0;
-					water = 100;
-					init_table(table, &fire_count);
-					reset = 0;
-					start = 0;
-				}
+					init_table(table, dados);
 				else
 					fire_spread(table, &fire_count);
 			}

@@ -5,7 +5,7 @@
 #include "SDL/SDL.h"
 #include "basic.h"
 
-void init_table(Spot [][8], int *);
+void init_table(Spot [][8], int **);
 void fire_spread(Spot [][8], int *);
 void difc_table(int *, int);
 

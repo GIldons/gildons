@@ -100,48 +100,26 @@ int init_serial()
 	return fd;
 }
 
-void get_input(int fd, char * s, int size)
+void get_input(int fd, char * data)
 {
-	time_t timeout = 10;
-	int debug = 1;
-		char	b;
-	char	*m;
-	time_t	t0;
-	t0 = time(NULL);
-	if (debug) printf("readStrBluART: \"");
-	m = s;
-	while (*m != '\0') {
-		read(fd, &b, sizeof (b));
-		//if (debug) printf(isgraph(b) ? "%c" : "\\%03o", b);
-		printf("\nreadStrBluART: %s", m);
-		if (*m++ != b)
-			m = s;
-		if (t0 - time(NULL) > timeout) {
-			if (debug) printf("\" ... timout\n");
-// 			return -1;
+	int n = 0, i = 0;
+	char temp;
+	if(fd != -1)
+	{
+		while(temp != '\n')// && size != i)
+		{
+			n = read(fd, &temp, sizeof(temp));
+			if(n < 0)
+				printf("Erro reading data\n");
+			else
+			{
+				data[i] = temp;
+				i++;
+			}
+			printf("Data loop : %s\n", &temp);
 		}
+		printf("Data: %s\n", data);
 	}
-	if (debug) printf("\" ... match\n");
-// 	return 0;
-	
-// 	int n = 0, i = 0;
-// 	char temp = ' ';
-// 	if(fd != -1)
-// 	{
-// 		while(temp != '\n')// && size != i)
-// 		{
-// 			n = read(fd, &temp, sizeof(temp));
-// 			if(n < 0)
-// 				printf("Erro reading data\n");
-// 			else
-// 			{
-// 				data[i] = temp;
-// 				i++;
-// 			}
-// 			printf("Data loop : %s\n", &temp);
-// 		}
-// 		printf("Data: %s\n", data);
-// 	}
 }
 
 int send_output(int fd, char * data)
@@ -165,7 +143,7 @@ void teste(Spot table[][8], int fd)
 	char str[50];
 	int test = atoi(str);
 	int test2;
-	get_input(fd, str, sizeof(char));
+	get_input(fd, str);
 	test2 = atoi(str);
 	if( test != test2)
 		printf("Str aoit: %d\n", test2);
