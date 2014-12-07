@@ -78,8 +78,6 @@ void init_table(Spot table[][8], int ** dados)
 	*(dados[2]) = 100;
 	*(dados[4]) = 0;
 	*(dados[5]) = 0;
-// 	*fire_count = 1;
-// 	{&fire_count, &fire_ext, &water, &lvl, &start, &reset};
 }
 
 //Until this point, the next fire spot is calculated here, but the idea is change this to an random
