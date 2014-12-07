@@ -67,7 +67,7 @@ int main()
 	send_output(fd, "R,1");
 	SDL_Delay(1);
 	send_output(fd, "F");
-	SDL_Delay();
+	SDL_Delay(1);
 	send_output(fd, "X");
 	
 	screen_time = spreed_time = SDL_GetTicks();
