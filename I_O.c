@@ -107,13 +107,14 @@ int get_input(int fd, char * data, int size)
 	{
 		while(temp != '\0')// && size != i)
 		{
-			n = read(fd, &temp, 1);
+			n = read(fd, &temp, sizeof(char));
 			if(n < 0)
 				printf("Erro reading data\n");
 			else
 			{
 				data[i] = temp;
 				i++;
+				temp++;
 			}
 		}
 		data[i+1] = '\0';
