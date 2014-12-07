@@ -58,26 +58,26 @@ int main()
 	
 	turn_onoff(1);
 	SDL_Delay(1);
-	send_output(fd, "+\n");
+	send_output(fd, "+\r");
 	SDL_Delay(1);
 	get_input(fd, buff, 2);
 	SDL_Delay(1);
-	send_output(fd, "SF,1\n");
+	send_output(fd, "SF,1\r");
 	get_input(fd, buff, 2);
 	SDL_Delay(1);
-	send_output(fd, "SS,C0000000\n");
+	send_output(fd, "SS,C0000000\r");
 	get_input(fd, buff, 2);
 	SDL_Delay(1);
-	send_output(fd, "SR,92000000\n");
+	send_output(fd, "SR,92000000\r");
 	get_input(fd, buff, 2);
 	SDL_Delay(1);
-	send_output(fd, "R,1\n");
+	send_output(fd, "R,1\r");
 	get_input(fd, buff, 2);
 	SDL_Delay(1);
-	send_output(fd, "F\n");
+	send_output(fd, "F\r");
 	get_input(fd, buff, 2);
 	SDL_Delay(1);
-	send_output(fd, "X\n");
+	send_output(fd, "X\r");
 	get_input(fd, buff, 2);
 	
 	screen_time = spreed_time = SDL_GetTicks();
