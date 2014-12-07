@@ -131,7 +131,7 @@ int send_output(int fd, char * data)
 		n = write(fd, data, strlen(data));
 		if(n < 0)
 		{
-// 			printf("Erro writing data\n");
+			printf("Erro writing data\n");
 			return -1;
 		}
 	}
