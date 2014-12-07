@@ -57,7 +57,7 @@ int main()
 // 	char * buff = (char *)malloc(sizeof(char)*50);
 	
 	turn_onoff(1);
-	get_input(fd, "CMD", sizeof("CMD"));
+// 	get_input(fd, "CMD", sizeof("CMD"));
 	send_output(fd, "+\n");
 	SDL_Delay(500);
 	send_output(fd, "SF,1\n");
