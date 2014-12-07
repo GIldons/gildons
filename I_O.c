@@ -77,7 +77,7 @@ int init_serial()
 	if(fd == -1)
 		printf("Unable to open Serial port\n");
 	else
-		fcntl(fd,F_SETFL, FNDELAY);
+		fcntl(fd,F_SETFL, 0);
 	
 	//Set the configurations acording to datasheet
 	struct termios options;
@@ -116,6 +116,7 @@ void get_input(int fd, char * data, int size)
 				data[i] = temp;
 				i++;
 			}
+			printf("Data: %s\n", &temp);
 		}
 		printf("Data: %s\n", data);
 	}
