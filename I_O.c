@@ -108,7 +108,7 @@ void get_input(int fd, char * data, int size)
 	{
 		while(temp != '\n')// && size != i)
 		{
-			n = read(fd, &temp, 1);
+			n = read(fd, &temp, sizeof(temp));
 			if(n < 0)
 				printf("Erro reading data\n");
 			else
