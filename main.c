@@ -55,19 +55,19 @@ int main()
 	fd = init_serial();
 	
 	turn_onoff(1);
-	SDL_Delay(500);
+	SDL_Delay(1);
 	send_output(fd, "+\n");
-	SDL_Delay(500);
+	SDL_Delay(1);
 	send_output(fd, "SF,1\n");
-	SDL_Delay(500);
+	SDL_Delay(1);
 	send_output(fd, "SS,C0000000\n");
-	SDL_Delay(500);
+	SDL_Delay(1);
 	send_output(fd, "SR,92000000\n");
-	SDL_Delay(500);
+	SDL_Delay(1);
 	send_output(fd, "R,1\n");
-	SDL_Delay(500);
+	SDL_Delay(1);
 	send_output(fd, "F\n");
-	SDL_Delay(500);
+	SDL_Delay(1);
 	send_output(fd, "X\n");
 	
 	screen_time = spreed_time = SDL_GetTicks();
