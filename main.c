@@ -63,16 +63,22 @@ int main()
 	get_input(fd, buff, 2);
 	SDL_Delay(1);
 	send_output(fd, "SF,1\n");
+	get_input(fd, buff, 2);
 	SDL_Delay(1);
 	send_output(fd, "SS,C0000000\n");
+	get_input(fd, buff, 2);
 	SDL_Delay(1);
 	send_output(fd, "SR,92000000\n");
+	get_input(fd, buff, 2);
 	SDL_Delay(1);
 	send_output(fd, "R,1\n");
+	get_input(fd, buff, 2);
 	SDL_Delay(1);
 	send_output(fd, "F\n");
+	get_input(fd, buff, 2);
 	SDL_Delay(1);
 	send_output(fd, "X\n");
+	get_input(fd, buff, 2);
 	
 	screen_time = spreed_time = SDL_GetTicks();
 	while(event.type != SDL_QUIT && exit)
