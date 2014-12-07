@@ -71,7 +71,7 @@ void screen_text(SDL_Surface ** Surfaces, int ** dados, TTF_Font ** font)
 void show_table(Spot table[][8], SDL_Surface * tree, SDL_Surface * tree_fire, SDL_Surface * screen)
 {
 	int i, j;
-	int off_x = 350, off_y = 130;
+	int off_x = 395, off_y = 180;
 	for(i = 0; i < 8; i++)
 		for(j = 0; j < 8; j++)
 		{
@@ -106,7 +106,7 @@ void mouse_events(SDL_Event * event, int ** dados, Spot table[][8], int teste_mo
 			if(teste_mode)
 			{
 				int i, j;
-				int off_x = 350, off_y = 130;
+				int off_x = 395, off_y = 180;
 				if((x > off_x) && (x < off_x + 45*8) && (y > off_y) && (y < off_y + 50*8))
 				{
 					i = (x - off_x)/45;

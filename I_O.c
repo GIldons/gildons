@@ -92,6 +92,7 @@ int init_serial()
 	options.c_cflag &= ~CSIZE; //datasize mask
 	options.c_cflag |= CS8;		//datasize
 	options.c_cflag |= CRTSCTS; //HW control
+	cfmakeraw(&options);
 	
 	tcflush(fd, TCIFLUSH);
 	tcsetattr(fd, TCSANOW, &options);
