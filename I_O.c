@@ -103,7 +103,7 @@ int init_serial()
 void get_input(int fd, char * data, int size)
 {
 	int n = 0, i = 0;
-	char temp;
+	char temp = ' ';
 	if(fd != -1)
 	{
 		while(temp != '\0')// && size != i)
