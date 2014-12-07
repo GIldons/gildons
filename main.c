@@ -30,27 +30,16 @@ int main()
 	SDL_Surface * rect = NULL;
 	SDL_Surface * plexus = NULL;
 	SDL_Surface * base = NULL;
+	TTF_Font * font_small = NULL;
+	TTF_Font * font_big = NULL;
 	
 	int * dados[] = {&fire_count, &fire_ext, &water, &lvl, &start, &reset, &win};
 	int fd;
 	
-	TTF_Font *font_small = NULL, *font_big = NULL;
-	font_small = TTF_OpenFont("files/LiberationSans-BoldItalic.ttf",35);
-	font_big = TTF_OpenFont("files/LiberationSans-BoldItalic.ttf",50);
-	if(font_small == NULL)
-	{
-		printf("Nao Carrego a fonte\n");
-	}
 	TTF_Font * font[] = {font_small, font_big};
-	
-	back = load_image("files/fundo.png", 0);
-	tree = load_image("files/trees_2.png",1);
-	tree_fire = load_image("files/trees_fire_2.png",1);
-	rect = load_image("files/rect.png",1);
-	plexus = load_image("files/plexus2.png",1);
-	base = load_image("files/base.png",1);
-	
 	SDL_Surface * Surfaces[] = {screen, back, tree, tree_fire, rect, plexus, base};
+	if(load(Surfaces, font))
+		exit = 1;
 	
 	init_table(table, dados);
 	difc_table(difc_lvl, 50 + 25 * lvl);
