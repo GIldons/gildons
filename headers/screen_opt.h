@@ -7,6 +7,6 @@
 
 void screen_text(SDL_Surface **, int **, TTF_Font **);
 void mouse_events(SDL_Event *, int **, Spot [][8], int );
-void show_table(Spot [][8], SDL_Surface *, SDL_Surface *, SDL_Surface *);
+void show_table(Spot [][8], SDL_Surface *, SDL_Surface *, SDL_Surface *,SDL_Surface *);
 
 #endif

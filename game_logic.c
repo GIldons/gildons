@@ -31,66 +31,86 @@ void init_table(Spot table[][8], int ** dados)
 				table[i][j].fire_lvl = -1;
 			else if(j == 0 || j == 7)
 				table[i][j].fire_lvl = -1;
+			else if(j == 8 && i == 4)
+				table[i][j].fire_lvl = -2;
 			else
 				table[i][j].fire_lvl = 0;
 		}
-		table[1][1].ID = 0xCB;
-		table[2][1].ID = 0xCD;
-		table[3][1].ID = 0xCF;
-		table[4][1].ID = 0xD1;
-		table[5][1].ID = 0xD3;
-		table[6][1].ID = 0xD5;
-		table[1][2].ID = 0xBB;
-		table[2][2].ID = 0xBD;
-		table[3][2].ID = 0xBF;
-		table[4][2].ID = 0xC5;
-		table[5][2].ID = 0xC7;
-		table[6][2].ID = 0xC9;
-		table[1][3].ID = 0xAF;
-		table[2][3].ID = 0xB1;
-		table[3][3].ID = 0xB3;
-		table[4][3].ID = 0xB5;
-		table[5][3].ID = 0xB7;
-		table[6][3].ID = 0xB9;
-		table[1][4].ID = 0xA3;
-		table[2][4].ID = 0xA5;
-		table[3][4].ID = 0xA7;
-		table[4][4].ID = 0xA9;
-		table[5][4].ID = 0xAB;
-		table[6][4].ID = 0xAD;
-		table[1][5].ID = 0x95;
-		table[2][5].ID = 0x97;
-		table[3][5].ID = 0x99;
-		table[4][5].ID = 0x9B;
-		table[5][5].ID = 0x9D;
-		table[6][5].ID = 0x9F;
-		table[1][6].ID = 0x89;
-		table[2][6].ID = 0x88;
-		table[3][6].ID = 0x8D;
-		table[4][6].ID = 0x8F;
-		table[5][6].ID = 0x91;
-		table[6][6].ID = 0x93;
-		
+	table[1][1].ID = 0xCB;
+	table[2][1].ID = 0xCD;
+	table[3][1].ID = 0xCF;
+	table[4][1].ID = 0xD1;
+	table[5][1].ID = 0xD3;
+	table[6][1].ID = 0xD5;
+	table[1][2].ID = 0xBB;
+	table[2][2].ID = 0xBD;
+	table[3][2].ID = 0xBF;
+	table[4][2].ID = 0xC5;
+	table[5][2].ID = 0xC7;
+	table[6][2].ID = 0xC9;
+	table[1][3].ID = 0xAF;
+	table[2][3].ID = 0xB1;
+	table[3][3].ID = 0xB3;
+	table[4][3].ID = 0xB5;
+	table[5][3].ID = 0xB7;
+	table[6][3].ID = 0xB9;
+	table[1][4].ID = 0xA3;
+	table[2][4].ID = 0xA5;
+	table[3][4].ID = 0xA7;
+	table[4][4].ID = 0xA9;
+	table[5][4].ID = 0xAB;
+	table[6][4].ID = 0xAD;
+	table[1][5].ID = 0x95;
+	table[2][5].ID = 0x97;
+	table[3][5].ID = 0x99;
+	table[4][5].ID = 0x9B;
+	table[5][5].ID = 0x9D;
+	table[6][5].ID = 0x9F;
+	table[1][6].ID = 0x89;
+	table[2][6].ID = 0x88;
+	table[3][6].ID = 0x8D;
+	table[4][6].ID = 0x8F;
+	table[5][6].ID = 0x91;
+	table[6][6].ID = 0x93;
+	
 	srand(time(NULL));
-	table[(rand() % 6 + 1)][(rand() % 6 + 1)].fire_lvl = 1;
+	i = (rand() % 6 + 1);
+	j = (rand() % 6 + 1);
+	while(i != 4 && j != 8)
+	{
+		i = (rand() % 6 + 1);
+		j = (rand() % 6 + 1);
+	}
+	table[i][j].fire_lvl = 1;
+	table[4][6].fire_lvl = -2;
+	
 	*(dados[0]) = 1;
 	*(dados[1]) = 0;
 	*(dados[2]) = 100;
 	*(dados[4]) = 0;
 	*(dados[5]) = 0;
+	*(dados[6]) = -1;
 }
 
 //Until this point, the next fire spot is calculated here, but the idea is change this to an random
 //table for different difficulties levels. For example, 3 charts with 100 positions and some of this positions
 //are filled and some not. The number of filled positions incrase with the difficult level.
-void fire_spread(Spot table[][8], int  * fire_count)
+void fire_spread(Spot table[][8], int  ** dados)
 {
 	int i, j, next_fire, exit;
 	exit = 0;
-	if(*fire_count < 36)
+	if(*(dados[0]) == 35)
+		*(dados[6]) = 0;
+	if(*(dados[0]) - *(dados[1]) == 0 || *(dados[0]) == 0)
 	{
-		for(i = 0; i < 8 && !exit; i++)
-			for(j = 0; j < 8 && !exit; j++)
+		*(dados[6]) = 1;
+		exit = 0;
+	}
+	
+	if(*(dados[0]) < 35)
+	{
+		for(i = 1; i < 7 && !exit; i++)
+			for(j = 1; j < 7 && !exit; j++)
 			{
 				if(table[i][j].fire_lvl > 0)
 				{
@@ -103,7 +123,7 @@ void fire_spread(Spot table[][8], int  * fire_count)
 							{
 								table[i-1][j-1].fire_lvl++;
 								exit = 1;
-								*fire_count = *fire_count + 1;
+								*(dados[0]) = *(dados[0]) + 1;
 							}
 							break;
 						case N:
@@ -111,7 +131,7 @@ void fire_spread(Spot table[][8], int  * fire_count)
 							{
 								table[i-1][j].fire_lvl++;
 								exit = 1;
-								*fire_count = *fire_count + 1;
+								*(dados[0]) = *(dados[0]) + 1;
 							}
 								break;
 						case NE:
@@ -119,7 +139,7 @@ void fire_spread(Spot table[][8], int  * fire_count)
 							{
 								table[i-1][j+1].fire_lvl++;
 								exit = 1;
-								*fire_count = *fire_count + 1;
+								*(dados[0]) = *(dados[0]) + 1;
 							}
 								break;
 						case E:
@@ -127,7 +147,7 @@ void fire_spread(Spot table[][8], int  * fire_count)
 							{
 								table[i][j+1].fire_lvl++;
 								exit = 1;
-								*fire_count = *fire_count + 1;
+								*(dados[0]) = *(dados[0]) + 1;
 							}
 								break;
 						case SE:
@@ -135,7 +155,7 @@ void fire_spread(Spot table[][8], int  * fire_count)
 							{
 								table[i+1][j+1].fire_lvl++;
 								exit = 1;
-								*fire_count = *fire_count + 1;
+								*(dados[0]) = *(dados[0]) + 1;
 							}
 								break;
 						case S:
@@ -143,7 +163,7 @@ void fire_spread(Spot table[][8], int  * fire_count)
 							{
 								table[i+1][j].fire_lvl++;
 								exit = 1;
-								*fire_count = *fire_count + 1;
+								*(dados[0]) = *(dados[0]) + 1;
 							}
 								break;
 						case SW:
@@ -151,7 +171,7 @@ void fire_spread(Spot table[][8], int  * fire_count)
 							{
 								table[i+1][j-1].fire_lvl++;
 								exit = 1;
-								*fire_count = *fire_count + 1;
+								*(dados[0]) = *(dados[0]) + 1;
 							}
 								break;
 						case W:
@@ -159,7 +179,7 @@ void fire_spread(Spot table[][8], int  * fire_count)
 							{
 								table[i][j-1].fire_lvl++;
 								exit = 1;
-								*fire_count = *fire_count + 1;
+								*(dados[0]) = *(dados[0]) + 1;
 							}
 								break;
 						default:

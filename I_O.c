@@ -8,6 +8,11 @@
 #include <termios.h> /* POSIX terminal control definitions */
 #include <string.h>
 #include <time.h>
+#include "headers/I_O.h"
+
+#define color_fire 0xE84319 //Orange
+#define color_tree 0x197519 //Green
+#define color_base 0x0000FF //Blue
 
 static const char * portName = "/dev/ttyPS1"; // Change for the right port
 
@@ -138,6 +143,25 @@ int send_output(int fd, char * data)
 	return 0;
 }
 
+void openBluetooh(int fd)
+{
+	SDL_Delay(30);
+	send_output(fd, "+\n");
+	SDL_Delay(1);
+	send_output(fd, "SF,1\n");
+	SDL_Delay(1);
+	send_output(fd, "SS,C0000000\n");
+	SDL_Delay(1);
+	send_output(fd, "SR,92000000\n");
+	SDL_Delay(1);
+	send_output(fd, "R,1\n");
+	SDL_Delay(30);
+	SDL_Delay(1);
+	send_output(fd, "F\n");
+	SDL_Delay(1);
+	send_output(fd, "X\n");
+}
+
 void teste(Spot table[][8], int fd)
 {
 	char str[50];
@@ -154,10 +178,51 @@ void teste(Spot table[][8], int fd)
 	if(test == 3)
 		table[3][3].fire_lvl = 1;//!table[3][3].fire_lvl;
 	if(test == 4)
+		//send comand;
 		table[4][4].fire_lvl = !table[4][4].fire_lvl;
 	if(test == 5)
 		table[5][5].fire_lvl = !table[5][5].fire_lvl;
 	if(test == 6)
 		table[6][6].fire_lvl = !table[6][6].fire_lvl;
 
+}
+
+//Maybe send all the colors first and than send run
+void send_tile(Spot table[][8], int i, int j)
+{
+	if(table[i][j].fire_lvl == 1)
+	{
+		//send color;
+	}
+	else if(table[i][j].fire_lvl == 0)
+	{
+		//send color;
+	}
+	else if(table[i][j].fire_lvl == -2)
+	{
+		//send color;
+	}
+		//send comand;
+}
+
+void read_tile(Spot table[][8], int ** dados)
+{
+	int tile_id, exit = 1, i , j;
+	//read helicoper
+	if(tile_id == table[4][6].ID)
+	{
+		*(dados[2]) = 100;
+		exit = 0;
+	}
+	for(i = 1; i < 7 && exit; i++)
+		for(j = 1; j < 7 && exit; j++)
+			if(tile_id == table[i][j].ID)
+			{
+				if(table[i][j].fire_lvl == 1)	
+				{
+					table[i][j].fire_lvl = 0;
+					*(dados[1]) = *(dados[1]) + 1;
+					exit = 0;
+				}
+			}
 }

@@ -91,7 +91,7 @@ int update_display(Sint16 x, Sint16 y)
 int apply_screen(SDL_Surface ** Surfaces, Spot table[][8], int ** dados, TTF_Font ** font)
 {
 		apply_surface(0, 0, Surfaces[1], Surfaces[0], NULL);
-		show_table(table, Surfaces[2], Surfaces[3], Surfaces[0]);
+		show_table(table, Surfaces[2], Surfaces[3], Surfaces[6], Surfaces[0]);
 		screen_text(Surfaces, dados, font);
 		return(update_display(0,0));
 }

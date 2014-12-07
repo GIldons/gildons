@@ -3,6 +3,7 @@
 #include "SDL/SDL_ttf.h"
 #include "headers/basic.h"
 #include "headers/game_logic.h"
+#include "headers/I_O.h"
 
 SDL_Color textColor = {0x00, 0x00, 0x00, 0x00};
 
@@ -32,7 +33,7 @@ void screen_text(SDL_Surface ** Surfaces, int ** dados, TTF_Font ** font)
 	apply_surface(10, 305, stemp, Surfaces[0], NULL);
 	SDL_FreeSurface(stemp);
 	
-	sprintf(temp, "Fires Extingueshed: %d", *(dados[1]));
+	sprintf(temp, "Fires Extinguished: %d", *(dados[1]));
 	stemp = TTF_RenderUTF8_Blended(font[0], temp, textColor);
 	apply_surface(10, 355, stemp, Surfaces[0], NULL);
 	SDL_FreeSurface(stemp);
@@ -45,7 +46,12 @@ void screen_text(SDL_Surface ** Surfaces, int ** dados, TTF_Font ** font)
 	
 	if(*dados[4])
 	{
-		sprintf(temp, "PAUSE");
+		if(*dados[6] == -1)
+			sprintf(temp, "PAUSE");
+		else if(*dados[6] == 1)
+			sprintf(temp, "YOU WIN!");
+		else if(*dados[6] == 0)
+			sprintf(temp, "Game Over!");
 		stemp = TTF_RenderUTF8_Blended(font[1], temp, textColor);
 		apply_surface(100, 455, stemp, Surfaces[0], NULL);
 		SDL_FreeSurface(stemp);
@@ -68,7 +74,7 @@ void screen_text(SDL_Surface ** Surfaces, int ** dados, TTF_Font ** font)
 }
 
 //Temporary function until SDL Screen is not implemented - FINAL
-void show_table(Spot table[][8], SDL_Surface * tree, SDL_Surface * tree_fire, SDL_Surface * screen)
+void show_table(Spot table[][8], SDL_Surface * tree, SDL_Surface * tree_fire, SDL_Surface * base, SDL_Surface * screen)
 {
 	int i, j;
 	int off_x = 395, off_y = 180;
@@ -79,6 +85,9 @@ void show_table(Spot table[][8], SDL_Surface * tree, SDL_Surface * tree_fire, SD
 				apply_surface( off_x + i*45, off_y + j*50, tree, screen, NULL);
 			else if(table[i][j].fire_lvl == 1)
 				apply_surface( off_x + i*45, off_y + j*50, tree_fire, screen, NULL);
+			else if(table[i][j].fire_lvl == -2)
+				apply_surface( off_x + i*45, off_y + j*50, base, screen, NULL);
+			send_tile(table, i, j);
 		}
 }
 

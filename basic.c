@@ -1,7 +1,6 @@
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 #include <string.h>
-// #include <sstream>
 #include "headers/basic.h"
 #include "headers/screen.h"
 
