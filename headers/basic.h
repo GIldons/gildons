@@ -13,8 +13,8 @@ typedef struct spot
 	int ID;
 } Spot;
 
-SDL_Surface *load_image(const char *, int alpha = 0);
-void apply_surface( int , int , SDL_Surface* , SDL_Surface* , SDL_Rect* = NULL );
+SDL_Surface *load_image(const char *, int alpha);
+void apply_surface( int , int , SDL_Surface* , SDL_Surface* , SDL_Rect*);// = NULL );
 int fps(int *);
 int timer(int *, int );
 #endif

@@ -29,23 +29,23 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CC) $(LINKOBJ) -o "main" $(LIBS)
 
-main.o: main.cpp
-	$(CC) -c main.cpp -o $(O_DIR)main.o $(CXXFLAGS)
+main.o: main.c
+	$(CC) -c main.c -o $(O_DIR)main.o $(CXXFLAGS)
 
-screen.o: screen.cpp
-	$(CC) -c screen.cpp -o $(O_DIR)screen.o $(CXXFLAGS)
+screen.o: screen.c
+	$(CC) -c screen.c -o $(O_DIR)screen.o $(CXXFLAGS)
 
-basic.o: basic.cpp
-	$(CC) -c basic.cpp -o $(O_DIR)basic.o $(CXXFLAGS)
+basic.o: basic.c
+	$(CC) -c basic.c -o $(O_DIR)basic.o $(CXXFLAGS)
 	
-game_logic.o: game_logic.cpp
-	$(CC) -c game_logic.cpp -o $(O_DIR)game_logic.o $(CXXFLAGS)
+game_logic.o: game_logic.c
+	$(CC) -c game_logic.c -o $(O_DIR)game_logic.o $(CXXFLAGS)
 	
-screen_opt.o: screen_opt.cpp
-	$(CC) -c screen_opt.cpp -o $(O_DIR)screen_opt.o $(CXXFLAGS)
+screen_opt.o: screen_opt.c
+	$(CC) -c screen_opt.c -o $(O_DIR)screen_opt.o $(CXXFLAGS)
 	
-I_O.o: I_O.cpp
-	$(CC) -c I_O.cpp -o $(O_DIR)I_O.o $(CXXFLAGS)
+I_O.o: I_O.c
+	$(CC) -c I_O.c -o $(O_DIR)I_O.o $(CXXFLAGS)
 
 # DO NOT EDIT BELOW THIS LINE
 
@@ -75,8 +75,8 @@ main.o: ./headers/basic.h ./headers/screen.h
 # fire_fight: main.o 
 # 	$(CC) $(O_DIR)main.o -o fire_fight
 # 
-# main.o: main.cpp
-# 	$(CC) $(CFLAGS) -c main.cpp -o $(O_DIR)main.o
+# main.o: main.c
+# 	$(CC) $(CFLAGS) -c main.c -o $(O_DIR)main.o
 # 
 # clean:
 # 	rm -rf $(O_DIR)*o fire_fight 
