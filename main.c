@@ -59,7 +59,7 @@ int main()
 	turn_onoff(1);
 	SDL_Delay(1);
 	send_output(fd, "+\n");
-	get_input(fd, buff, 4);
+// 	get_input(fd, buff, 4);
 	SDL_Delay(1);
 	send_output(fd, "SF,1\n");
 	SDL_Delay(1);
