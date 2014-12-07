@@ -99,7 +99,7 @@ int init_serial()
 	return fd;
 }
 
-int get_input(int fd, char * data, int size)
+void get_input(int fd, char * data, int size)
 {
 	int n = 0, i = 0;
 	char temp;
@@ -119,10 +119,7 @@ int get_input(int fd, char * data, int size)
 		}
 		data[i+1] = '\0';
 		printf("Data: %s\n", data);
-		return 1;
 	}
-	return 0;
-	
 }
 
 int send_output(int fd, const char * data)
