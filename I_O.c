@@ -106,7 +106,7 @@ void get_input(int fd, char * data, int size)
 	char temp = ' ';
 	if(fd != -1)
 	{
-		while(temp != '\n')// && size != i)
+		while(temp != '\0')// && size != i)
 		{
 			n = read(fd, &temp, sizeof(temp));
 			if(n < 0)
@@ -116,7 +116,7 @@ void get_input(int fd, char * data, int size)
 				data[i] = temp;
 				i++;
 			}
-			printf("Data: %s\n", &temp);
+			printf("Data loop : %s\n", &temp);
 		}
 		printf("Data: %s\n", data);
 	}
