@@ -8,6 +8,6 @@
 void turn_onoff(int);
 int init_serial();
 void get_input(int , char * , int );
-int send_output(int , const char *);
+int send_output(int , char *);
 void teste(Spot table[][8], int);
 #endif

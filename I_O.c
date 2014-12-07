@@ -122,7 +122,7 @@ void get_input(int fd, char * data, int size)
 	}
 }
 
-int send_output(int fd, const char * data)
+int send_output(int fd, char * data)
 {
 	int n = 0;
 	printf("data: %d\n", (int)strlen(data));
