@@ -117,7 +117,6 @@ void get_input(int fd, char * data, int size)
 				i++;
 			}
 		}
-		data[i+1] = '\0';
 		printf("Data: %s\n", data);
 	}
 }
