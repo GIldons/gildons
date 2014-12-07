@@ -112,7 +112,7 @@ int main()
 					fire_spread(table, &fire_count);
 			}
 		}
-		teste(table, fd);
+// 		teste(table, fd);
 		SDL_Delay(.1);
 	}
 	
