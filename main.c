@@ -72,11 +72,11 @@ int main()
 		{
 			clearAll(1, 0, 0);
 			int i;
-			for(i = 0; i < 15; i++)
+			for(i = 15; i < 50; i++)
 			{
 				writeTile(i,0xFF0000);
 				printf("i = %d\n", i);
-				SDL_Delay(7000);
+				SDL_Delay(5000);
 			}
 			if(!apply_screen(Surfaces, table, dados, font))
 			{
