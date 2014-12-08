@@ -76,6 +76,10 @@ int main()
 				printf("Error updating screen\n");
 				exit = 0;
 			}
+			int ii, jj;
+			for(ii = 0; ii < 6; ii++)
+				for(jj = 0; j < 6; jj++)
+					void writeTile(jj + 6*ii, 0xFF00FF);
 		}
 		
 		//Update the game at GAMETIME sec. based on current status

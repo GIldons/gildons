@@ -87,7 +87,7 @@ void show_table(Spot table[][8], SDL_Surface * tree, SDL_Surface * tree_fire, SD
 				apply_surface( off_x + i*45, off_y + j*50, tree_fire, screen, NULL);
 			else if(table[i][j].fire_lvl == -2)
 				apply_surface( off_x + i*45, off_y + j*50, base, screen, NULL);
-			send_tile(table, i, j);
+// 			send_tile(table, i, j);
 		}
 }
 
