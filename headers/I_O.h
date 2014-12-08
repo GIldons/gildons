@@ -6,12 +6,12 @@
 #include "I_O.h"
 
 void turn_onoff(int);
-int init_serial();
+int init_serial(int, int);
 void get_input(int , char *);
 int send_output(int , char *);
 void teste(Spot table[][8], int);
 void send_tile(Spot table[][8], int , int );
-void read_tile(Spot table[][8], int ** );
+void read_heli(Spot table[][8], int, int ** );
 void openBluetooh(int);
 
 #endif

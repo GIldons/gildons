@@ -20,30 +20,31 @@ SDL_Event event;
 int main()
 {
 	int exit = 1, fire_count = 0, fire_ext = 0, start = 0, water = 100, lvl = 0, temp;
-	int screen_time = 0, spreed_time = 0, win = -1; 
+	int screen_time = 0, spreed_time = 0, win = -1;
 	int reset = 0, difc_lvl[100];
+	int fd = -1, fd_test = -1;
 	Spot table[8][8];
 	SDL_Surface * screen = make_screen();
+	SDL_Surface * tree_fire = NULL;
+	TTF_Font * font_small = NULL;
+	SDL_Surface * plexus = NULL;
+	TTF_Font * font_big = NULL;
 	SDL_Surface * back = NULL;
 	SDL_Surface * tree = NULL;
-	SDL_Surface * tree_fire = NULL;
 	SDL_Surface * rect = NULL;
-	SDL_Surface * plexus = NULL;
 	SDL_Surface * base = NULL;
-	TTF_Font * font_small = NULL;
-	TTF_Font * font_big = NULL;
 	
-	int * dados[] = {&fire_count, &fire_ext, &water, &lvl, &start, &reset, &win};
-	int fd;
-	
-	TTF_Font * font[] = {font_small, font_big};
 	SDL_Surface * Surfaces[] = {screen, back, tree, tree_fire, rect, plexus, base};
+	int * dados[] = {&fire_count, &fire_ext, &water, &lvl, &start, &reset, &win};
+	TTF_Font * font[] = {font_small, font_big};
+	
 	if(load(Surfaces, font))
 		exit = 1;
+	if(init_serial(fd, fd_test))
+		exit = 1;
 	
-	init_table(table, dados);
 	difc_table(difc_lvl, 50 + 25 * lvl);
-	fd = init_serial();
+	init_table(table, dados);
 	
 	turn_onoff(1);
 	openBluetooh(fd);
@@ -84,7 +85,7 @@ int main()
 					fire_spread(table, dados);
 			}
 		}
-// 		teste(table, fd);
+		read_heli(table, fd, dados);
 		SDL_Delay(.1);
 	}
 	

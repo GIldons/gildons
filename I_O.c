@@ -15,6 +15,7 @@
 #define color_base 0x0000FF //Blue
 
 static const char * portName = "/dev/ttyPS1"; // Change for the right port
+static const char * portTest = "/dev/ttyPS1"; // Change for the right port
 
 void turn_onoff(int on_off)
 {
@@ -74,20 +75,32 @@ void turn_onoff(int on_off)
 	
 }
 
-int init_serial()
+int init_serial(int fd, int fdtest)
 {
 	//Open the file descriptor for the serial port
-	int fd;
 	fd = open(portName, O_RDWR | O_NOCTTY | O_NDELAY);
 	if(fd == -1)
-		printf("Unable to open Serial port\n");
+	{
+		printf("Unable to open Serial port Bluetooh\n");
+		return 1;
+	}
 	else
 		fcntl(fd,F_SETFL, FNDELAY);
+	fdtest = open(portTest, O_RDWR | O_NOCTTY | O_NDELAY);
+	if(fdtest == -1)
+	{
+		printf("Unable to open Serial port Test\n");
+		return 1;
+	}
+	else
+		fcntl(fdtest,F_SETFL, FNDELAY);
 	
 	//Set the configurations acording to datasheet
 	struct termios options;
 	
 	tcgetattr(fd, &options);
+	tcgetattr(fdtest, &options);
+	
 	cfsetispeed(&options, B115200);
 	cfsetospeed(&options, B115200);
 	
@@ -102,7 +115,10 @@ int init_serial()
 	tcflush(fd, TCIFLUSH);
 	tcsetattr(fd, TCSANOW, &options);
 	
-	return fd;
+	tcflush(fdtest, TCIFLUSH);
+	tcsetattr(fdtest, TCSANOW, &options);
+	
+	return 0;
 }
 
 void get_input(int fd, char * data)
@@ -162,30 +178,30 @@ void openBluetooh(int fd)
 	send_output(fd, "X\n");
 }
 
-void teste(Spot table[][8], int fd)
-{
-	char str[50];
-	int test = atoi(str);
-	int test2;
-	get_input(fd, str);
-	test2 = atoi(str);
-	if( test != test2)
-		printf("Str aoit: %d\n", test2);
-	if(test == 1)
-		table[1][1].fire_lvl = !table[1][1].fire_lvl;
-	if(test == 2)
-		table[2][2].fire_lvl = !table[2][2].fire_lvl;
-	if(test == 3)
-		table[3][3].fire_lvl = 1;//!table[3][3].fire_lvl;
-	if(test == 4)
-		//send comand;
-		table[4][4].fire_lvl = !table[4][4].fire_lvl;
-	if(test == 5)
-		table[5][5].fire_lvl = !table[5][5].fire_lvl;
-	if(test == 6)
-		table[6][6].fire_lvl = !table[6][6].fire_lvl;
-
-}
+// void teste(Spot table[][8], int fd)
+// {
+// 	char str[50];
+// 	int test = atoi(str);
+// 	int test2;
+// 	get_input(fd, str);
+// 	test2 = atoi(str);
+// 	if( test != test2)
+// 		printf("Str aoit: %d\n", test2);
+// 	if(test == 1)
+// 		table[1][1].fire_lvl = !table[1][1].fire_lvl;
+// 	if(test == 2)
+// 		table[2][2].fire_lvl = !table[2][2].fire_lvl;
+// 	if(test == 3)
+// 		table[3][3].fire_lvl = 1;//!table[3][3].fire_lvl;
+// 	if(test == 4)
+// 		//send comand;
+// 		table[4][4].fire_lvl = !table[4][4].fire_lvl;
+// 	if(test == 5)
+// 		table[5][5].fire_lvl = !table[5][5].fire_lvl;
+// 	if(test == 6)
+// 		table[6][6].fire_lvl = !table[6][6].fire_lvl;
+// 
+// }
 
 //Maybe send all the colors first and than send run
 void send_tile(Spot table[][8], int i, int j)
@@ -205,9 +221,10 @@ void send_tile(Spot table[][8], int i, int j)
 		//send comand;
 }
 
-void read_tile(Spot table[][8], int ** dados)
+void read_heli(Spot table[][8], int fd , int ** dados)
 {
-	int tile_id, exit = 1, i , j;
+	int exit = 1, i , j;
+	unsigned int tile_id = 0x0;
 	//read helicoper
 	if(tile_id == table[4][6].ID)
 	{
