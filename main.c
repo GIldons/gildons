@@ -50,7 +50,7 @@ int main()
 	turn_onoff(0);
 // 	openBluetooh(fd);
 	turn_onoff(1);
-	fd = connectBluAR1T();
+	fd = connectBluART();
 	screen_time = spreed_time = SDL_GetTicks();
 	while(event.type != SDL_QUIT && exit)
 	{
