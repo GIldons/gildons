@@ -80,7 +80,7 @@ void init_table(Spot table[][8], int ** dados)
 		for(j = 6; j > 1; j--)
 		{
 			table[j][i].LED_ID = k;
-			k++
+			k++;
 		}
 		
 	srand(time(NULL));
