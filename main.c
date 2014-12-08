@@ -71,8 +71,12 @@ int main()
 		if(fps(&screen_time))
 		{
 			clearAll(1, 0, 0);
-			SDL_Delay(10000);
-			writeTile(0,0xFF0000);
+			int i;
+			for(i = 0; i < 15; i++)
+			{
+				writeTile(i,0xFF0000);
+				printf("i = %d\n", i);
+			}
 			if(!apply_screen(Surfaces, table, dados, font))
 			{
 				printf("Error updating screen\n");
