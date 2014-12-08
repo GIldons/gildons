@@ -70,14 +70,14 @@ int main()
 		//Update the screen at 30 FPS
 		if(fps(&screen_time))
 		{
-			clearAll(1, 0, 0);
-			int i;
-			for(i = 0; i < 1000 ; i++)
-			{
-				writeTile(i,0x0000FF);
-				printf("i = %d\n", i);
-				SDL_Delay(1000);
-			}
+// 			clearAll(1, 0, 0);
+// 			int i;
+// 			for(i = 0; i < 1000 ; i++)
+// 			{
+// 				writeTile(i,0x0000FF);
+// 				printf("i = %d\n", i);
+// 				SDL_Delay(1000);
+// 			}
 			if(!apply_screen(Surfaces, table, dados, font))
 			{
 				printf("Error updating screen\n");
