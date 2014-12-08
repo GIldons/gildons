@@ -53,7 +53,7 @@ int main()
 	turn_onoff(1);
 	fd = connectBluART();
 	screen_time = spreed_time = SDL_GetTicks();
-	writeTile(1, 0x0000FF)
+	writeTile(1, 0x0000FF);
 	while(event.type != SDL_QUIT && exit)
 	{
 		temp = lvl;
