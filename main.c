@@ -48,6 +48,7 @@ int main()
 	init_table(table, dados);
 	
 	turn_onoff(0);
+	SDL_Delay(10);
 // 	openBluetooh(fd);
 	turn_onoff(1);
 	fd = connectBluART();
