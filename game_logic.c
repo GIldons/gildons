@@ -20,7 +20,7 @@
 #define W 8
 
 //Set real spots with 0, for no fire, and auxliary spots with -1
-//Use j for line and i for collum
+//Use j for line and i for collum 
 void init_table(Spot table[][8], int ** dados)
 {
 	int i, j;
