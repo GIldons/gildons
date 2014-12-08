@@ -90,7 +90,7 @@ int init_serial(int * fd, int * fdtest)
 	if(*fdtest == -1)
 	{
 		printf("Unable to open Serial port Test\n");
-		return 1;
+// 		return 1;
 	}
 	else
 		fcntl(*fdtest,F_SETFL, FNDELAY);
