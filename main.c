@@ -72,6 +72,7 @@ int main()
 		{
 			clearAll(1, 0, 0);
 			SDL_Delay(10000);
+			writeTile(0,0xFF0000);
 			if(!apply_screen(Surfaces, table, dados, font))
 			{
 				printf("Error updating screen\n");
