@@ -17,7 +17,7 @@
 #define COPTER_MAC "001EC01B173B"
 #define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
 
-int debug = 0;
+int debug = 1;
 
 int
 openBluART(char *dev)
@@ -52,24 +52,22 @@ readStrBluART(int fd, char *s, time_t timeout)
 	char	b;
 	char	*m;
 	time_t	t0;
-// 	int	rv;
 	
 	t0 = time(NULL);
 
 	if (debug) printf("readStrBluART: \"");
 	m = s;
 	while (*m != '\0') {
-		while (read(fd, &b, sizeof (b)) <= 0 && time(NULL) - t0 > timeout);
-		//if (debug) printf(isgraph(b) ? "%c" : "\\%03o", b);
+		while (read(fd, &b, sizeof (b)) <= 0) {
+			if (time(NULL) - t0 > timeout)
+				return -1;
+			sleep(1);
+		}
+
 		if (debug) printf("\nreadStrBluART: \"%c\" %s", b, m);
 
 		if (*m++ != b)
 			m = s;
-
-		if (time(NULL) - t0 > timeout) {
-			if (debug) printf("\" ... timout\n");
-			return -1;
-		}
 	}
 
 	if (debug) printf("\" ... match\n");
@@ -231,4 +229,13 @@ void clearAll(int r, int g, int b)
 	sprintf(buf, "0x000000F1 0x00000000");
 	writeString(buf);
 	waitForZero();
+}
+
+int main(int argc, char **argv)
+{
+	int	fd;
+
+	fd = connectBluART();
+
+	return 0;
 }

@@ -2,9 +2,11 @@
 #ifndef neolib_H
 #define neolib_H
 
-
-void writeTile(int tileId, int color);
 unsigned int nextTaggedTile(int);
 int connectBluART();
+
+void writeTile(int tileId, int color);
 int run_led();
+
+
 #endif
