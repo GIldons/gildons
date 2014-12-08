@@ -83,10 +83,10 @@ void init_table(Spot table[][8], int ** dados)
 			i = (rand() % 6 + 1);
 			j = (rand() % 6 + 1);
 			table[i][j].fire_lvl = 1;
+			*(dados[0]) = *(dados[0]) + 1;
 		}
 	table[4][6].fire_lvl = -2;
 	
-	*(dados[0]) = 1;
 	*(dados[1]) = 0;
 	*(dados[2]) = 100;
 	*(dados[4]) = 0;
