@@ -212,10 +212,15 @@ void writeTile(unsigned int tilenum, unsigned int color)
 		writeString(buf);
 		waitForZero();
 	}
+}
 
+int run_led()
+{
+	char buf[32];
 	sprintf(buf, "0x%08x 0x%08x", 0xF1, 0);
 	writeString(buf);
 	waitForZero();
+	return 1;
 }
 
 void clearAll(int r, int g, int b)

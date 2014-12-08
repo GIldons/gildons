@@ -11,8 +11,8 @@
 #include "headers/I_O.h"
 #include "headers/neolib.h"
 
-#define color_fire 0xE84319 //Orange
-#define color_tree 0x197519 //Green
+#define color_fire 0x00FF00 //Orange
+#define color_tree 0xFF0000 //Green
 #define color_base 0x0000FF //Blue
 
 static const char * portName = "/dev/ttyPS1"; // Change for the right port

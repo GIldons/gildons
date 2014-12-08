@@ -70,8 +70,8 @@ int main()
 		//Update the screen at 30 FPS
 		if(fps(&screen_time))
 		{
-			clearAll(1, 0, 0);
-			if(!apply_screen(Surfaces, table, dados, font))
+// 			clearAll(1, 0, 0);
+			if(!apply_screen(Surfaces, table, dados, font) && run_led())
 			{
 				printf("Error updating screen\n");
 				exit = 0;
