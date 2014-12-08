@@ -8,8 +8,8 @@ CPP  = g++
 CC   = gcc 
 RES  =
 O_DIR = OBJ/
-OBJ  = main.o screen.o basic.o game_logic.o screen_opt.o I_O.o $(RES)
-LINKOBJ  = $(O_DIR)main.o $(O_DIR)screen.o $(O_DIR)basic.o $(O_DIR)game_logic.o $(O_DIR)screen_opt.o $(O_DIR)I_O.o $(RES)
+OBJ  = main.o screen.o basic.o game_logic.o screen_opt.o I_O.o neolib.o $(RES)
+LINKOBJ  = $(O_DIR)main.o $(O_DIR)screen.o $(O_DIR)basic.o $(O_DIR)game_logic.o $(O_DIR)screen_opt.o $(O_DIR)I_O.o $(O_DIR)neolib.o $(RES)
 LIBS =  -lSDL -lSDL_image -lSDL_ttf
 INCS = 
 CXXINCS = 
@@ -46,6 +46,9 @@ screen_opt.o: screen_opt.c
 	
 I_O.o: I_O.c
 	$(CC) -c I_O.c -o $(O_DIR)I_O.o $(CXXFLAGS)
+	
+neolib.o: neolib.c
+	$(CC) -c neolib.c -o $(O_DIR)neolib.o $(CXXFLAGS)
 
 # DO NOT EDIT BELOW THIS LINE
 

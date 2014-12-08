@@ -12,6 +12,7 @@
 #include "headers/game_logic.h"
 #include "headers/screen_opt.h"
 #include "headers/I_O.h"
+#include "headers/neolib.h"
 
 SDL_Event event;
 

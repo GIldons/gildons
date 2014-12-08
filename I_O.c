@@ -9,6 +9,7 @@
 #include <string.h>
 #include <time.h>
 #include "headers/I_O.h"
+#include "headers/neolib.h"
 
 #define color_fire 0xE84319 //Orange
 #define color_tree 0x197519 //Green
@@ -81,7 +82,7 @@ int init_serial(int * fd)
 	if(*fd == -1)
 	{
 		printf("Unable to open Serial port Bluetooh\n");
-		return 1;
+// 		return 1;
 	}
 	else
 		fcntl(*fd,F_SETFL, FNDELAY);
@@ -107,10 +108,12 @@ int init_serial(int * fd)
 	return 0;
 }
 
-int get_input(int fd, char * data)
-{
-	return 0;
-}
+// int get_input(int fd, char * data)
+// {
+// 	//TODO Give the fd, and char return the "0xBB" (tile id) as an string or int or the most convinent way
+// 	//from the bluetooth and if possible just return 0;
+// 	return 0;
+// }
 
 int send_output(int fd, char * data)
 {
@@ -144,6 +147,10 @@ void openBluetooh(int fd)
 	send_output(fd, "F\n");
 	SDL_Delay(1);
 	send_output(fd, "X\n");
+	SDL_Delay(1);
+	send_output(fd, "E,0,001EC01B173B\n");
+	SDL_Delay(3);
+	send_output(fd, "I\n");
 }
 
 // void teste(Spot table[][8], int fd)
@@ -192,10 +199,10 @@ void send_tile(Spot table[][8], int i, int j)
 void read_heli(Spot table[][8], int fd , int ** dados)
 {
 	int exit = 1, i , j;
-	char buff[4];
-	int tile_id;
-	read(fd, buff, sizeof(buff));
-	tile_id = atoi(buff);
+	unsigned int tile_id;
+	
+	tile_id = nextTaggedTile(fd);
+	
 	if(tile_id == table[4][6].ID)
 	{
 		*(dados[2]) = 100;
