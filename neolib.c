@@ -19,32 +19,32 @@
 
 int debug = 1;
 
-// int
-// openBluART(char *dev)
-// {
-// 	int	fd;
-// 	struct	termios ti;
-// 
-// 	if ((fd = open(dev, O_RDWR, 0)) == -1)
-// 		return -1;
-// 
-// 	fcntl(fd, F_SETFL, FNDELAY);
-// 
-// 	if (tcgetattr(fd, &ti) == -1)
-// 		return -1;
-// 
-// 
-// 	ti.c_cflag |= CRTSCTS;
-// 
-// 	cfsetispeed(&ti, B115200);
-// 	cfsetospeed(&ti, B115200);
-// 	cfmakeraw(&ti);
-// 
-// 	if (tcsetattr(fd, TCSANOW, &ti) != 0)
-// 		return -1;
-// 
-// 	return fd;
-// }
+int
+openBluART(char *dev)
+{
+	int	fd;
+	struct	termios ti;
+
+	if ((fd = open(dev, O_RDWR, 0)) == -1)
+		return -1;
+
+	fcntl(fd, F_SETFL, FNDELAY);
+
+	if (tcgetattr(fd, &ti) == -1)
+		return -1;
+
+
+	ti.c_cflag |= CRTSCTS;
+
+	cfsetispeed(&ti, B115200);
+	cfsetospeed(&ti, B115200);
+	cfmakeraw(&ti);
+
+	if (tcsetattr(fd, TCSANOW, &ti) != 0)
+		return -1;
+
+	return fd;
+}
 
 int
 readStrBluART(int fd, char *s, time_t timeout)
@@ -76,86 +76,86 @@ readStrBluART(int fd, char *s, time_t timeout)
 	return 0;
 }
 
-// void
-// writeStrBluART(int fd, char *s)
-// {
-// 	int	n;
-// 
-// 	if (debug) printf("writeStrBluART: \"%s\"\n", s);
-// 
-// 	n = strlen(s);
-// 	while (n > 0)	n -= write(fd, s, n);
-// }
+void
+writeStrBluART(int fd, char *s)
+{
+	int	n;
 
-// int
-// scanDevBluART(int fd, char *d, int scantime)
-// {
-// 	int found = 0;
-// 
-// 	writeStrBluART(fd, "F\n");
-// 	if (readStrBluART(fd, "AOK", FAST_TIMEOUT) != 0)
-// 		return -1;
-// 
-// 	if (readStrBluART(fd, d, scantime) == 0)
-// 		found = 1;
-// 
-// 	writeStrBluART(fd, "X\n");
-// 	if (readStrBluART(fd, "AOK", FAST_TIMEOUT) != 0)
-// 		return -1;
-// 
-// 	return found ? 0 : -1;
-// }
+	if (debug) printf("writeStrBluART: \"%s\"\n", s);
 
-// int
-// connectDevBluART(int fd, char *d, int timeout)
-// {
-// 	writeStrBluART(fd, "E,0,");
-// 	writeStrBluART(fd, d);
-// 	writeStrBluART(fd, "\n");
-// 	if (readStrBluART(fd, "AOK", timeout) != 0)
-// 		return -1;
-// 	readStrBluART(fd, "Connected", 10);
-// 		return -1;
-// 	return 0;
-// }
+	n = strlen(s);
+	while (n > 0)	n -= write(fd, s, n);
+}
 
-// int
-// connectBluART()
-// {
-// 	int	fd;
-// 
-// 	if (debug) printf("main: start\n");
-// 	if ((fd = openBluART(BLUART_DEV)) == -1)
-// 		err(1, "Couldn't open" BLUART_DEV);
-// 	if (debug) printf("main: opened dev\n");
-// 
-// 	writeStrBluART(fd, "+\n");
-// 	readStrBluART(fd, "Echo", FAST_TIMEOUT);
-// 
-// 	writeStrBluART(fd, "SF,1\n");
-// 	readStrBluART(fd, "AOK", FAST_TIMEOUT);
-// 
-// 	writeStrBluART(fd, "SS,C0000000\n");
-// 	readStrBluART(fd, "AOK", FAST_TIMEOUT);
-// 
-// 	writeStrBluART(fd, "SR,92000000\n");
-// 	readStrBluART(fd, "AOK", FAST_TIMEOUT);
-// 
-// 	writeStrBluART(fd, "R,1\n");
-// 	readStrBluART(fd, "CMD", 10);
-// 
-// 	printf("bluetooth ready\n");
-// 
-// 	scanDevBluART(fd, COPTER_MAC, 10);
-// 	connectDevBluART(fd, COPTER_MAC, 10);
-// 
-// 	writeStrBluART(fd, "I\n");
-// 	readStrBluART(fd, "MLDP", FAST_TIMEOUT);
-// 
-// 	printf("got connection\n");
-// 
-// 	return fd;
-// }
+int
+scanDevBluART(int fd, char *d, int scantime)
+{
+	int found = 0;
+
+	writeStrBluART(fd, "F\n");
+	if (readStrBluART(fd, "AOK", FAST_TIMEOUT) != 0)
+		return -1;
+
+	if (readStrBluART(fd, d, scantime) == 0)
+		found = 1;
+
+	writeStrBluART(fd, "X\n");
+	if (readStrBluART(fd, "AOK", FAST_TIMEOUT) != 0)
+		return -1;
+
+	return found ? 0 : -1;
+}
+
+int
+connectDevBluART(int fd, char *d, int timeout)
+{
+	writeStrBluART(fd, "E,0,");
+	writeStrBluART(fd, d);
+	writeStrBluART(fd, "\n");
+	if (readStrBluART(fd, "AOK", timeout) != 0)
+		return -1;
+	readStrBluART(fd, "Connected", 10);
+		return -1;
+	return 0;
+}
+
+int
+connectBluART()
+{
+	int	fd;
+
+	if (debug) printf("main: start\n");
+	if ((fd = openBluART(BLUART_DEV)) == -1)
+		err(1, "Couldn't open" BLUART_DEV);
+	if (debug) printf("main: opened dev\n");
+
+	writeStrBluART(fd, "+\n");
+	readStrBluART(fd, "Echo", FAST_TIMEOUT);
+
+	writeStrBluART(fd, "SF,1\n");
+	readStrBluART(fd, "AOK", FAST_TIMEOUT);
+
+	writeStrBluART(fd, "SS,C0000000\n");
+	readStrBluART(fd, "AOK", FAST_TIMEOUT);
+
+	writeStrBluART(fd, "SR,92000000\n");
+	readStrBluART(fd, "AOK", FAST_TIMEOUT);
+
+	writeStrBluART(fd, "R,1\n");
+	readStrBluART(fd, "CMD", 10);
+
+	printf("bluetooth ready\n");
+
+	scanDevBluART(fd, COPTER_MAC, 10);
+	connectDevBluART(fd, COPTER_MAC, 10);
+
+	writeStrBluART(fd, "I\n");
+	readStrBluART(fd, "MLDP", FAST_TIMEOUT);
+
+	printf("got connection\n");
+
+	return fd;
+}
 
 unsigned int nextTaggedTile(int fd)
 {

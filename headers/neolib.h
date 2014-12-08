@@ -5,4 +5,5 @@
 
 void writeTile(int tileId, int color);
 unsigned int nextTaggedTile(int);
+int connectBluART();
 #endif
