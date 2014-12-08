@@ -75,7 +75,7 @@ void init_table(Spot table[][8], int ** dados)
 	
 	for(i = 0; i < 6; i++)
 		for(j = 0; j < 6; j++)
-			table[i+1][j+1].ID = (j + 6*i);
+			table[i+1][j+1].LED_ID = (j + 6*i);
 		
 	srand(time(NULL));
 	i = (rand() % 6 + 1);
