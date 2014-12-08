@@ -37,10 +37,11 @@ void screen_text(SDL_Surface ** Surfaces, int ** dados, TTF_Font ** font)
 	stemp = TTF_RenderUTF8_Blended(font[0], temp, textColor);
 	apply_surface(10, 355, stemp, Surfaces[0], NULL);
 	SDL_FreeSurface(stemp);
-	if(*(dados[2]) > 30)
-		sprintf(temp, "Water Level: %d", *(dados[2]));
-	else if(*(dados[2]) > 0)
-		sprintf(temp, "Water Level: %d - Critical", *(dados[2]));
+	
+	if(*dados[2] > 30)
+		sprintf(temp, "Water Level: %d", *dados[2]);
+	else if(*dados[2] > 0)
+		sprintf(temp, "Water Level: %d - Critical", *dados[2]);
 	else
 		sprintf(temp, "No water! Go to base!");
 	stemp = TTF_RenderUTF8_Blended(font[0], temp, textColor);

@@ -217,9 +217,15 @@ void read_heli(Spot table[][8], int fd , int ** dados)
 			{
 				if(table[i][j].fire_lvl == 1)	
 				{
-					table[i][j].fire_lvl = 0;
-					*(dados[1]) = *(dados[1]) + 1;
-					exit = 0;
+					if(*(dados[2]) > 0)
+					{
+						table[i][j].fire_lvl = 0;
+						*(dados[1]) = *(dados[1]) + 1;
+						if(*(dados[0]) > 0)
+							*(dados[0]) = *(dados[0]) - 1;
+						*(dados[2]) = *(dados[2]) - 10;
+						exit = 0;
+					}
 				}
 			}
 }
