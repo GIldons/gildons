@@ -71,7 +71,7 @@ int main()
 		if(fps(&screen_time))
 		{
 // 			clearAll(1, 0, 0);
-			if(!apply_screen(Surfaces, table, dados, font) && run_led())
+			if(!apply_screen(Surfaces, table, dados, font))
 			{
 				printf("Error updating screen\n");
 				exit = 0;
