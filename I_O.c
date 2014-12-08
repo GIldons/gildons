@@ -163,10 +163,13 @@ int send_output(int fd, char * data)
 
 void openBluetooh(int fd)
 {
-	char * t = NULL;
+	char * t = NULL
+	int n = 0;
 	SDL_Delay(30);
 	send_output(fd, "+\n");
-	read(fd, t, 1);
+	n = read(fd, t, 1);
+	while(n == 0)
+		n = read(fd, t, 1);
 	printf("Ha! %s\n", t);
 	SDL_Delay(1);
 	send_output(fd, "SF,1\n");
