@@ -49,9 +49,9 @@ int main()
 	
 	turn_onoff(0);
 	SDL_Delay(10);
-// 	openBluetooh(fd);
+	openBluetooh(fd);
 	turn_onoff(1);
-// 	fd = connectBluART();
+	fd = connectBluART();
 	screen_time = spreed_time = SDL_GetTicks();
 	
 	clearAll(1, 1, 1);

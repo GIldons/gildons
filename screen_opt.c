@@ -42,7 +42,7 @@ void screen_text(SDL_Surface ** Surfaces, int ** dados, TTF_Font ** font)
 	else if(*dados[2] > 0)
 		sprintf(temp, "Water Level: %d - Critical", *(dados[2]));
 	else
-		sprintf(temp, "No water! Go to base!", *(dados[2]));
+		sprintf(temp, "No water! Go to base!");
 	stemp = TTF_RenderUTF8_Blended(font[0], temp, textColor);
 	apply_surface(10, 405, stemp, Surfaces[0], NULL);
 	SDL_FreeSurface(stemp);
@@ -138,6 +138,7 @@ void mouse_events(SDL_Event * event, int ** dados, Spot table[][8], int teste_mo
 							*(dados[0])=(*dados[0]) - 1;
 							if(*dados[2] > 0)
 								*(dados[2])=(*dados[2]) - 10;
+						}
 					}
 				}
 			}
