@@ -116,14 +116,15 @@ void init_table(Spot table[][8], int ** dados)
 	j = (rand() % 6 + 1);
 	int k = 0;
 	for(k = 0; k < 4; k++)
-		while(i != 4 && j != 8)
+	{
+		if(i != 4 && j != 8)
 		{
-			i = (rand() % 6 + 1);
-			j = (rand() % 6 + 1);
 			table[i][j].fire_lvl = 1;
 			*(dados[0]) = *(dados[0]) + 1;
-			k++;
 		}
+		i = (rand() % 6 + 1);
+		j = (rand() % 6 + 1);
+	}
 	table[4][6].fire_lvl = -2;
 	
 	*(dados[1]) = 0;
