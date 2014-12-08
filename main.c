@@ -85,7 +85,7 @@ int main()
 					fire_spread(table, dados);
 			}
 		}
-		read_heli(table, fd, dados);
+		read_heli(table, fd_test, dados);
 		SDL_Delay(.1);
 	}
 	

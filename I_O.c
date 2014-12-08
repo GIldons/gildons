@@ -15,7 +15,7 @@
 #define color_base 0x0000FF //Blue
 
 static const char * portName = "/dev/ttyPS1"; // Change for the right port
-static const char * portTest = "read"; // Change for the right port
+static const char * portTest = "/dev/tty8"; // Change for the right port
 
 void turn_onoff(int on_off)
 {
@@ -121,26 +121,28 @@ int init_serial(int * fd, int * fdtest)
 	return 0;
 }
 
-void get_input(int fd, char * data)
+int get_input(int fd, char * data)
 {
-	int n = 0, i = 0;
-	char temp;
+	int n = 0;
+	char * temp = NULL;
 	if(fd != -1)
 	{
-		while(temp != '\n')// && size != i)
 		{
-			n = read(fd, &temp, sizeof(temp));
+			n = read(fd, temp, sizeof(char));
+			if(n == 0)
+				return 1;
 			if(n < 0)
 				printf("Erro reading data\n");
 			else
 			{
-				data[i] = temp;
-				i++;
+// 				data[i] = temp;
+// 				i++;
 			}
-			printf("Data loop : %s\n", &temp);
+			printf("Data loop : %c\n", *temp);
 		}
-		printf("Data: %s\n", data);
+// 		printf("Data: %s\n", data);
 	}
+	return 0;
 }
 
 int send_output(int fd, char * data)
