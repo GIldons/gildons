@@ -183,17 +183,16 @@ void send_tile(Spot table[][8], int i, int j)
 {
 	if(table[i][j].fire_lvl == 1)
 	{
-		//send color;
+		writeTile(table[i][j].ID, color_fire);
 	}
 	else if(table[i][j].fire_lvl == 0)
 	{
-		//send color;
+		writeTile(table[i][j].ID, color_tree);
 	}
 	else if(table[i][j].fire_lvl == -2)
 	{
-		//send color;
+		writeTile(table[i][j].ID, color_base);
 	}
-		//send comand;
 }
 
 void read_heli(Spot table[][8], int fd , int ** dados)
