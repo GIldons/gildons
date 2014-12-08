@@ -143,7 +143,7 @@ void fire_spread(Spot table[][8], int  ** dados)
 	exit = 0;
 	if(*(dados[0]) == 35)
 		*(dados[6]) = 0;
-	if(*(dados[0]) - *(dados[1]) == 0 || *(dados[0]) == 0)
+	if(*(dados[0]) == 0)
 	{
 		*(dados[6]) = 1;
 		exit = 0;

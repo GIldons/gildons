@@ -41,7 +41,7 @@ int init()
 		return 0;
 	if( TTF_Init() == -1 )
 		return 0;
-	SDL_WM_SetCaption("FireFlight - Beta 4 - ECE 453 Project", NULL );
+	SDL_WM_SetCaption("FireFlight - ECE 453 Project", NULL );
 	return 1;
 }
 
