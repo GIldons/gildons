@@ -168,7 +168,7 @@ void openBluetooh(int fd)
 	SDL_Delay(30);
 	send_output(fd, "+\n");
 	n = read(fd, t, 1);
-	while(n == 0)
+	while(n != 0)
 		n = read(fd, t, 1);
 	printf("Ha! %s\n", t);
 	SDL_Delay(1);
