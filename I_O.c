@@ -123,25 +123,6 @@ int init_serial(int * fd, int * fdtest)
 
 int get_input(int fd, char * data)
 {
-	int n = 0;
-	char * temp = NULL;
-	if(fd != -1)
-	{
-		{
-			n = read(fd, temp, 1);
-			if(n == 0)
-				return 1;
-			if(n < 0)
-				printf("Erro reading data\n");
-			else
-			{
-// 				data[i] = temp;
-// 				i++;
-			}
-			printf("Data loop : %c\n", *temp);
-		}
-// 		printf("Data: %s\n", data);
-	}
 	return 0;
 }
 
@@ -163,14 +144,8 @@ int send_output(int fd, char * data)
 
 void openBluetooh(int fd)
 {
-	char * t = NULL;
-	int n = 0;
 	SDL_Delay(30);
 	send_output(fd, "+\n");
-	n = read(fd, t, 1);
-	while(n != 0)
-		n = read(fd, t, 1);
-	printf("Ha! %s\n", t);
 	SDL_Delay(1);
 	send_output(fd, "SF,1\n");
 	SDL_Delay(1);
