@@ -15,7 +15,7 @@
 #define color_base 0x0000FF //Blue
 
 static const char * portName = "/dev/ttyPS1"; // Change for the right port
-static const char * portTest = "/dev/ttyPS1"; // Change for the right port
+static const char * portTest = "read"; // Change for the right port
 
 void turn_onoff(int on_off)
 {
@@ -75,31 +75,31 @@ void turn_onoff(int on_off)
 	
 }
 
-int init_serial(int fd, int fdtest)
+int init_serial(int * fd, int * fdtest)
 {
 	//Open the file descriptor for the serial port
-	fd = open(portName, O_RDWR | O_NOCTTY | O_NDELAY);
-	if(fd == -1)
+	*fd = open(portName, O_RDWR | O_NOCTTY | O_NDELAY);
+	if(*fd == -1)
 	{
 		printf("Unable to open Serial port Bluetooh\n");
-		return 1;
+// 		return 1;
 	}
 	else
-		fcntl(fd,F_SETFL, FNDELAY);
-	fdtest = open(portTest, O_RDWR | O_NOCTTY | O_NDELAY);
-	if(fdtest == -1)
+		fcntl(*fd,F_SETFL, FNDELAY);
+	*fdtest = open(portTest, O_RDWR | O_NOCTTY | O_NDELAY);
+	if(*fdtest == -1)
 	{
 		printf("Unable to open Serial port Test\n");
 		return 1;
 	}
 	else
-		fcntl(fdtest,F_SETFL, FNDELAY);
+		fcntl(*fdtest,F_SETFL, FNDELAY);
 	
 	//Set the configurations acording to datasheet
 	struct termios options;
 	
-	tcgetattr(fd, &options);
-	tcgetattr(fdtest, &options);
+	tcgetattr(*fd, &options);
+	tcgetattr(*fdtest, &options);
 	
 	cfsetispeed(&options, B115200);
 	cfsetospeed(&options, B115200);
@@ -112,11 +112,11 @@ int init_serial(int fd, int fdtest)
 	options.c_cflag |= CRTSCTS; //HW control
 	cfmakeraw(&options);
 	
-	tcflush(fd, TCIFLUSH);
-	tcsetattr(fd, TCSANOW, &options);
+	tcflush(*fd, TCIFLUSH);
+	tcsetattr(*fd, TCSANOW, &options);
 	
-	tcflush(fdtest, TCIFLUSH);
-	tcsetattr(fdtest, TCSANOW, &options);
+	tcflush(*fdtest, TCIFLUSH);
+	tcsetattr(*fdtest, TCSANOW, &options);
 	
 	return 0;
 }
@@ -224,8 +224,11 @@ void send_tile(Spot table[][8], int i, int j)
 void read_heli(Spot table[][8], int fd , int ** dados)
 {
 	int exit = 1, i , j;
-	unsigned int tile_id = 0x0;
-	//read helicoper
+	char buff[4];
+	int tile_id;
+	read(fd, buff, sizeof(buff));
+	printf("Valor lido %s\n", buff);
+	tile_id = atoi(buff);
 	if(tile_id == table[4][6].ID)
 	{
 		*(dados[2]) = 100;

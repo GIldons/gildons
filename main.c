@@ -39,9 +39,9 @@ int main()
 	TTF_Font * font[] = {font_small, font_big};
 	
 	if(load(Surfaces, font))
-		exit = 1;
-	if(init_serial(fd, fd_test))
-		exit = 1;
+		exit = 0;
+	if(init_serial(&fd, &fd_test) == 1)
+		exit = 0;
 	
 	difc_table(difc_lvl, 50 + 25 * lvl);
 	init_table(table, dados);
