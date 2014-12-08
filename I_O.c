@@ -165,8 +165,8 @@ void openBluetooh(int fd)
 {
 	char * t;
 	SDL_Delay(30);
-	int i = send_output(fd, "+\n");
-	get_input(fd, t);
+	send_output(fd, "+\n");
+	int i = get_input(fd, t);
 	SDL_Delay(1);
 	send_output(fd, "SF,1\n");
 	SDL_Delay(1);
