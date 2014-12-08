@@ -48,9 +48,10 @@ int main()
 	init_table(table, dados);
 	
 	turn_onoff(0);
-	SDL_Delay(10);
+	SDL_Delay(30);
 	openBluetooh(fd);
 	turn_onoff(1);
+	SDL_Delay(100);
 	fd = connectBluART();
 	screen_time = spreed_time = SDL_GetTicks();
 	
