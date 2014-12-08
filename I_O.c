@@ -140,7 +140,7 @@ void openBluetooh(int fd)
 	send_output(fd, "SR,92000000\n");
 	SDL_Delay(1);
 	send_output(fd, "R,1\n");
-	SDL_Delay(1000);
+	SDL_Delay(5000);
 	send_output(fd, "F\n");
 	SDL_Delay(1);
 	send_output(fd, "X\n");
