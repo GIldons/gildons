@@ -74,14 +74,42 @@ void init_table(Spot table[][8], int ** dados)
 	table[6][6].ID = 0x93;
 	
 	
-	int k = 0;
-	
-	for(i = 6; i > 1; i--)
-		for(j = 6; j > 1; j--)
-		{
-			table[j][i].LED_ID = k;
-			k++;
-		}
+	table[1][1].LED_ID = 30;
+	table[2][1].LED_ID = 31;
+	table[3][1].LED_ID = 32;
+	table[4][1].LED_ID = 33;
+	table[5][1].LED_ID = 34;
+	table[6][1].LED_ID = 35;
+	table[1][2].LED_ID = 29;
+	table[2][2].LED_ID = 28;
+	table[3][2].LED_ID = 27;
+	table[4][2].LED_ID = 26;
+	table[5][2].LED_ID = 25;
+	table[6][2].LED_ID = 24;
+	table[1][3].LED_ID = 18;
+	table[2][3].LED_ID = 19;
+	table[3][3].LED_ID = 20;
+	table[4][3].LED_ID = 21;
+	table[5][3].LED_ID = 22;
+	table[6][3].LED_ID = 23;
+	table[1][4].LED_ID = 17;
+	table[2][4].LED_ID = 16;
+	table[3][4].LED_ID = 15;
+	table[4][4].LED_ID = 14;
+	table[5][4].LED_ID = 13;
+	table[6][4].LED_ID = 12;
+	table[1][5].LED_ID = 6;
+	table[2][5].LED_ID = 7;
+	table[3][5].LED_ID = 8;
+	table[4][5].LED_ID = 9;
+	table[5][5].LED_ID = 10;
+	table[6][5].LED_ID = 11;
+	table[1][6].LED_ID = 5;
+	table[2][6].LED_ID = 4;
+	table[3][6].LED_ID = 3;
+	table[4][6].LED_ID = 2;
+	table[5][6].LED_ID = 1;
+	table[6][6].LED_ID = 0;
 		
 	srand(time(NULL));
 	i = (rand() % 6 + 1);
