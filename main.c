@@ -62,7 +62,7 @@ int main()
 		//Check for any User input over SDL interface
 		while(SDL_PollEvent(&event))
 		{
-			mouse_events(&event, dados, table, 1);
+			mouse_events(&event, dados, table, 1, &fd);
 			if(temp != lvl)
 			{
 				difc_table(difc_lvl, 50 + 25 * lvl);

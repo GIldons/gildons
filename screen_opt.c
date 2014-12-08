@@ -4,6 +4,8 @@
 #include "headers/basic.h"
 #include "headers/game_logic.h"
 #include "headers/I_O.h"
+#include "headers/neolib.h"
+
 
 SDL_Color textColor = {0x00, 0x00, 0x00, 0x00};
 
@@ -96,7 +98,7 @@ void show_table(Spot table[][8], SDL_Surface * tree, SDL_Surface * tree_fire, SD
 		}
 }
 
-void mouse_events(SDL_Event * event, int ** dados, Spot table[][8], int teste_mode)
+void mouse_events(SDL_Event * event, int ** dados, Spot table[][8], int teste_mode, int * fd)
 {
 	int x, y;
 	if(event->type == SDL_MOUSEBUTTONDOWN)
@@ -115,6 +117,16 @@ void mouse_events(SDL_Event * event, int ** dados, Spot table[][8], int teste_mo
 				*(dados[4]) = !*(dados[4]);
 			if(( x > 100) && ( x < (100 + 165) ) && ( y > 525) && ( y < (525 + 50)))
 				*(dados[5]) = 1;
+			if(( x > 780) && ( x < 800) ) && ( y > 580) && ( y < 600))
+			{
+				SDL_Delay(500);
+				turn_onoff(0);
+				SDL_Delay(500);
+				SDL_Delay(500);
+				turn_onoff(1);
+				*fd = connectBluART();
+				printf("Restarted\n");
+			}
 			
 			//Use user input over the title to change status
 			if(teste_mode)
