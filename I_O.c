@@ -15,7 +15,6 @@
 #define color_base 0x0000FF //Blue
 
 static const char * portName = "/dev/ttyPS1"; // Change for the right port
-static const char * portTest = "/dev/tty8"; // Change for the right port
 
 void turn_onoff(int on_off)
 {
@@ -75,31 +74,22 @@ void turn_onoff(int on_off)
 	
 }
 
-int init_serial(int * fd, int * fdtest)
+int init_serial(int * fd)
 {
 	//Open the file descriptor for the serial port
-	*fd = open(portName, O_RDWR | O_NOCTTY | O_NDELAY);
+	*fd = open(portName, O_RDWR | O_NOCTTY | O_NDELAY, 0);
 	if(*fd == -1)
 	{
 		printf("Unable to open Serial port Bluetooh\n");
-// 		return 1;
+		return 1;
 	}
 	else
 		fcntl(*fd,F_SETFL, FNDELAY);
-	*fdtest = open(portTest, O_RDWR | O_NOCTTY | O_NDELAY);
-	if(*fdtest == -1)
-	{
-		printf("Unable to open Serial port Test\n");
-// 		return 1;
-	}
-	else
-		fcntl(*fdtest,F_SETFL, FNDELAY);
 	
 	//Set the configurations acording to datasheet
 	struct termios options;
 	
 	tcgetattr(*fd, &options);
-	tcgetattr(*fdtest, &options);
 	
 	cfsetispeed(&options, B115200);
 	cfsetospeed(&options, B115200);
@@ -114,10 +104,6 @@ int init_serial(int * fd, int * fdtest)
 	
 	tcflush(*fd, TCIFLUSH);
 	tcsetattr(*fd, TCSANOW, &options);
-	
-	tcflush(*fdtest, TCIFLUSH);
-	tcsetattr(*fdtest, TCSANOW, &options);
-	
 	return 0;
 }
 

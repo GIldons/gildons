@@ -22,7 +22,7 @@ int main()
 	int exit = 1, fire_count = 0, fire_ext = 0, start = 0, water = 100, lvl = 0, temp;
 	int screen_time = 0, spreed_time = 0, win = -1;
 	int reset = 0, difc_lvl[100];
-	int fd = -1, fd_test = -1;
+	int fd = -1;
 	Spot table[8][8];
 	SDL_Surface * screen = make_screen();
 	SDL_Surface * tree_fire = NULL;
@@ -40,7 +40,7 @@ int main()
 	
 	if(load(Surfaces, font))
 		exit = 0;
-	if(init_serial(&fd, &fd_test) == 1)
+	if(init_serial(&fd) == 1)
 		exit = 0;
 	
 	difc_table(difc_lvl, 50 + 25 * lvl);
@@ -85,7 +85,7 @@ int main()
 					fire_spread(table, dados);
 			}
 		}
-		read_heli(table, fd_test, dados);
+		read_heli(table, fd, dados);
 		SDL_Delay(.1);
 	}
 	

@@ -6,7 +6,7 @@
 #include "I_O.h"
 
 void turn_onoff(int);
-int init_serial(int *, int *);
+int init_serial(int *);
 int get_input(int , char *);
 int send_output(int , char *);
 // void teste(Spot table[][8], int);
