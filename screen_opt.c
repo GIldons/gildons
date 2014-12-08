@@ -28,7 +28,7 @@ void screen_text(SDL_Surface ** Surfaces, int ** dados, TTF_Font ** font)
 	SDL_FreeSurface(stemp);
 	
 	
-	sprintf(temp, "Remaning Fires: %d", *(dados[0]));
+	sprintf(temp, "Remaining Fires: %d", *(dados[0]));
 	stemp = TTF_RenderUTF8_Blended(font[0], temp, textColor);
 	apply_surface(10, 305, stemp, Surfaces[0], NULL);
 	SDL_FreeSurface(stemp);

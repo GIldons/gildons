@@ -227,7 +227,6 @@ void read_heli(Spot table[][8], int fd , int ** dados)
 	char buff[4];
 	int tile_id;
 	read(fd, buff, sizeof(buff));
-	printf("Valor lido %s\n", buff);
 	tile_id = atoi(buff);
 	if(tile_id == table[4][6].ID)
 	{
