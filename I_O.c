@@ -128,7 +128,7 @@ int get_input(int fd, char * data)
 	if(fd != -1)
 	{
 		{
-			n = read(fd, temp, sizeof(char));
+			n = read(fd, temp, 1);
 			if(n == 0)
 				return 1;
 			if(n < 0)
@@ -163,8 +163,10 @@ int send_output(int fd, char * data)
 
 void openBluetooh(int fd)
 {
+	char * t;
 	SDL_Delay(30);
 	send_output(fd, "+\n");
+	int i = get_input(fd, t);
 	SDL_Delay(1);
 	send_output(fd, "SF,1\n");
 	SDL_Delay(1);
