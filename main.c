@@ -16,7 +16,7 @@
 
 SDL_Event event;
 
-#define GAMETIME 1000
+#define GAMETIME 5000
 
 int main()
 {
