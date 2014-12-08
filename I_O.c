@@ -186,15 +186,16 @@ void send_tile(Spot table[][8], int i, int j)
 
 	if(table[i][j].fire_lvl == 1)
 	{
-		writeTile((i -1) * 6 + (j -1), color_fire);
+		writeTile(table[i][j].LED_ID, color_fire);
+// 		writeTile((i -1) * 6 + (j -1), color_fire);
 	}
 	else if(table[i][j].fire_lvl == 0)
 	{
-		writeTile((i -1) * 6 + (j -1), color_tree);
+		writeTile(table[i][j].LED_ID, color_tree);
 	}
 	else if(table[i][j].fire_lvl == -2)
 	{
-		writeTile((i - 1) * 6 + (j - 1), color_base);
+		writeTile(table[i][j].LED_ID, color_base);
 	}
 }
 
