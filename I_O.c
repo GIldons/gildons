@@ -181,17 +181,20 @@ void openBluetooh(int fd)
 //Maybe send all the colors first and than send run
 void send_tile(Spot table[][8], int i, int j)
 {
+	if (i >= 6 || j >= 6 || i == 0 || j == 0)
+		return;
+
 	if(table[i][j].fire_lvl == 1)
 	{
-		writeTile(i * 6 + j, color_fire);
+		writeTile((i -1) * 6 + (j -1), color_fire);
 	}
 	else if(table[i][j].fire_lvl == 0)
 	{
-		writeTile(i * 6 + j, color_tree);
+		writeTile((i -1) * 6 + (j -1), color_tree);
 	}
 	else if(table[i][j].fire_lvl == -2)
 	{
-		writeTile(i * 6 + j, color_base);
+		writeTile((i - 1) * 6 + (j - 1), color_base);
 	}
 }
 
@@ -201,6 +204,9 @@ void read_heli(Spot table[][8], int fd , int ** dados)
 	unsigned int tile_id;
 	
 	tile_id = nextTaggedTile(fd);
+
+	if (tile_id != -1)
+		printf("saw tile %d\n", tile_id);
 	
 	if(tile_id == table[4][6].ID)
 	{

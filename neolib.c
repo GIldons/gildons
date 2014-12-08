@@ -17,7 +17,7 @@
 #define COPTER_MAC "001EC01B173B"
 #define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
 
-int debug = 1;
+int debug = 0;
 
 int
 openBluART(char *dev)
@@ -207,13 +207,29 @@ void writeTile(unsigned int tilenum, unsigned int color)
 	char buf[32];
 
 	for (i = 0; i < 5; i++) {
-		data = ((tilenum + i) << 24) | color;
+		data = ((tilenum * 5 + i) << 24) | color;
 		sprintf(buf, "0x%08x 0x%08x", 0x11, data);
 		writeString(buf);
 		waitForZero();
 	}
 
 	sprintf(buf, "0x%08x 0x%08x", 0xF1, 0);
+	writeString(buf);
+	waitForZero();
+}
+
+void clearAll(int r, int g, int b)
+{
+	char buf[32];
+
+	sprintf(buf, "0x00000021 0x%08x",
+		(r ? 0xFF0000 : 0) |
+		(g ? 0x00FF00 : 0) |
+		(b ? 0xFF00FF : 0)
+	);
+	writeString(buf);
+	waitForZero();
+	sprintf(buf, "0x000000F1 0x00000000");
 	writeString(buf);
 	waitForZero();
 }
