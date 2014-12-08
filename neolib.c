@@ -59,7 +59,7 @@ readStrBluART(int fd, char *s, time_t timeout)
 	if (debug) printf("readStrBluART: \"");
 	m = s;
 	while (*m != '\0') {
-		while (read(fd, &b, sizeof (b)) <= 0);
+		while (read(fd, &b, sizeof (b)) <= 0 && t0 - time(NULL) > timeout);
 		//if (debug) printf(isgraph(b) ? "%c" : "\\%03o", b);
 		if (debug) printf("\nreadStrBluART: \"%c\" %s", b, m);
 
