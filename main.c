@@ -76,6 +76,7 @@ int main()
 			{
 				writeTile(i,0xFF0000);
 				printf("i = %d\n", i);
+				SDL_Delay(7000);
 			}
 			if(!apply_screen(Surfaces, table, dados, font))
 			{
