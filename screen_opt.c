@@ -78,8 +78,8 @@ void show_table(Spot table[][8], SDL_Surface * tree, SDL_Surface * tree_fire, SD
 {
 	int i, j;
 	int off_x = 395, off_y = 180;
-	for(i = 0; i < 8; i++)
-		for(j = 0; j < 8; j++)
+	for(i = 1; i < 7; i++)
+		for(j = 1; j < 7; j++)
 		{
 			if(table[i][j].fire_lvl == 0)
 				apply_surface( off_x + i*45, off_y + j*50, tree, screen, NULL);

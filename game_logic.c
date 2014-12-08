@@ -31,7 +31,7 @@ void init_table(Spot table[][8], int ** dados)
 				table[i][j].fire_lvl = -1;
 			else if(j == 0 || j == 7)
 				table[i][j].fire_lvl = -1;
-			else if(j == 8 && i == 4)
+			else if(j == 6 && i == 4)
 				table[i][j].fire_lvl = -2;
 			else
 				table[i][j].fire_lvl = 0;
