@@ -117,7 +117,7 @@ void mouse_events(SDL_Event * event, int ** dados, Spot table[][8], int teste_mo
 				*(dados[4]) = !*(dados[4]);
 			if(( x > 100) && ( x < (100 + 165) ) && ( y > 525) && ( y < (525 + 50)))
 				*(dados[5]) = 1;
-			if(( x > 780) && ( x < 800) ) && ( y > 580) && ( y < 600))
+			if((x > 780) && (x < 800) && (y > 580) && (y < 600))
 			{
 				SDL_Delay(500);
 				turn_onoff(0);
