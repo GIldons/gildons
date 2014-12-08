@@ -181,9 +181,6 @@ void openBluetooh(int fd)
 //Maybe send all the colors first and than send run
 void send_tile(Spot table[][8], int i, int j)
 {
-	if (i >= 6 || j >= 6 || i == 0 || j == 0)
-		return;
-
 	if(table[i][j].fire_lvl == 1)
 	{
 		writeTile(table[i][j].LED_ID, color_fire);
