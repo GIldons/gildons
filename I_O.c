@@ -1,3 +1,9 @@
+/*I_O Control
+ 
+# Project: FireFlight - ECE453
+# Write by Raul Matheus Martins
+# Sponsored by Plexu and CAPES - Brazil*/
+
 #include "headers/basic.h"
 
 #include <stdio.h>   /* Standard input/output definitions */
@@ -82,7 +88,7 @@ int init_serial(int * fd)
 	if(*fd == -1)
 	{
 		printf("Unable to open Serial port Bluetooh\n");
-// 		return 1;
+		return 1;
 	}
 	else
 		fcntl(*fd,F_SETFL, FNDELAY);

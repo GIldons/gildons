@@ -1,3 +1,9 @@
+/*Game Logic
+ 
+# Project: FireFlight - ECE453
+# Write by Cliff Buchanan
+# Sponsored by Plexu*/
+
 #include <ctype.h>
 #include <err.h>
 #include <fcntl.h>

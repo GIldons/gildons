@@ -1,4 +1,8 @@
-/*Game Logic*/
+/*Game Logic
+ 
+# Project: FireFlight - ECE453
+# Write by Raul Matheus Martins
+# Sponsored by Plexu and CAPES - Brazil*/
 
 #include <stdio.h>
 #include <stdlib.h>

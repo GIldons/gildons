@@ -1,8 +1,6 @@
 # Project: FireFlight - ECE453
-# Makefile created by Dev-C++ 4.9.9.2
-# Xunxado by Raul!
-#i586-mingw32msvc-g++
-#i586-mingw32msvc-gcc
+# Write by Raul Matheus Martins
+# Sponsored by Plexu and CAPES - Brazil
 
 CPP  = g++
 CC   = gcc 
@@ -52,34 +50,5 @@ neolib.o: neolib.c
 
 # DO NOT EDIT BELOW THIS LINE
 
-main.o: ./headers/basic.h ./headers/screen.h
 
 # DO NOT EDIT ABOVE THIS LINE
-
-
-
-
-
-
-
-
-
-
-
-# 
-# # Fire Fight - ECE 453 Project
-# # 
-# CC=g++
-# #
-# CFLAGS= -Wall -Wextra -lSDL -lSDL_image
-# O_DIR= OBJ/
-# all: fire_fight
-# 
-# fire_fight: main.o 
-# 	$(CC) $(O_DIR)main.o -o fire_fight
-# 
-# main.o: main.c
-# 	$(CC) $(CFLAGS) -c main.c -o $(O_DIR)main.o
-# 
-# clean:
-# 	rm -rf $(O_DIR)*o fire_fight 

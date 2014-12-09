@@ -1,4 +1,11 @@
 //neolib.h
+/*Game User/Screen Functions
+ 
+# Project: FireFlight - ECE453
+# Write by Raul Matheus Martins
+# Sponsored by Plexu and CAPES - Brazil*/
+
+
 #ifndef neolib_H
 #define neolib_H
 

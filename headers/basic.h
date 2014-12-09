@@ -1,4 +1,11 @@
 //basic.h
+/*Game Basic Functions
+ 
+# Project: FireFlight - ECE453
+# Write by Raul Matheus Martins
+# Sponsored by Plexu and CAPES - Brazil*/
+
+
 #ifndef basic_H
 #define basic_H
 

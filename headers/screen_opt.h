@@ -1,4 +1,10 @@
 //screen_opt.h
+/*Game User/Screen Functions
+ 
+# Project: FireFlight - ECE453
+# Write by Raul Matheus Martins
+# Sponsored by Plexu and CAPES - Brazil*/
+
 #ifndef screen_opt_H
 #define screen_opt_H
 #include "SDL/SDL.h"

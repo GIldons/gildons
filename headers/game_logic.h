@@ -1,4 +1,11 @@
 //game_logic.h
+/*Game Logic Functions
+ 
+# Project: FireFlight - ECE453
+# Write by Raul Matheus Martins
+# Sponsored by Plexu and CAPES - Brazil*/
+
+
 #ifndef game_logic_H
 #define game_logic_H
 
