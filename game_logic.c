@@ -67,7 +67,7 @@ void init_table(Spot table[][8], int ** dados)
 	table[5][5].ID = 0x9D;
 	table[6][5].ID = 0x9F;
 	table[1][6].ID = 0x89;
-	table[2][6].ID = 0x88;
+	table[2][6].ID = 0x8B;
 	table[3][6].ID = 0x8D;
 	table[4][6].ID = 0x8F;
 	table[5][6].ID = 0x91;
