@@ -108,13 +108,6 @@ int init_serial(int * fd)
 	return 0;
 }
 
-// int get_input(int fd, char * data)
-// {
-// 	//TODO Give the fd, and char return the "0xBB" (tile id) as an string or int or the most convinent way
-// 	//from the bluetooth and if possible just return 0;
-// 	return 0;
-// }
-
 int send_output(int fd, char * data)
 {
 	int n = 0;
@@ -153,30 +146,6 @@ void openBluetooh(int fd)
 	send_output(fd, "I\n");
 }
 
-// void teste(Spot table[][8], int fd)
-// {
-// 	char str[50];
-// 	int test = atoi(str);
-// 	int test2;
-// 	get_input(fd, str);
-// 	test2 = atoi(str);
-// 	if( test != test2)
-// 		printf("Str aoit: %d\n", test2);
-// 	if(test == 1)
-// 		table[1][1].fire_lvl = !table[1][1].fire_lvl;
-// 	if(test == 2)
-// 		table[2][2].fire_lvl = !table[2][2].fire_lvl;
-// 	if(test == 3)
-// 		table[3][3].fire_lvl = 1;//!table[3][3].fire_lvl;
-// 	if(test == 4)
-// 		//send comand;
-// 		table[4][4].fire_lvl = !table[4][4].fire_lvl;
-// 	if(test == 5)
-// 		table[5][5].fire_lvl = !table[5][5].fire_lvl;
-// 	if(test == 6)
-// 		table[6][6].fire_lvl = !table[6][6].fire_lvl;
-// 
-// }
 
 //Maybe send all the colors first and than send run
 void send_tile(Spot table[][8], int i, int j)
@@ -184,7 +153,6 @@ void send_tile(Spot table[][8], int i, int j)
 	if(table[i][j].fire_lvl == 1)
 	{
 		writeTile(table[i][j].LED_ID, color_fire);
-// 		writeTile((i -1) * 6 + (j -1), color_fire);
 	}
 	else if(table[i][j].fire_lvl == 0)
 	{

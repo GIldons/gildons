@@ -114,6 +114,7 @@ void init_table(Spot table[][8], int ** dados)
 	srand(time(NULL));
 	i = (rand() % 6 + 1);
 	j = (rand() % 6 + 1);
+	*(dados[0]) = 0;
 	int k = 0;
 	for(k = 0; k < 4; k++)
 	{
@@ -141,9 +142,9 @@ void fire_spread(Spot table[][8], int  ** dados)
 {
 	int i, j, next_fire, exit;
 	exit = 0;
-	if(*(dados[0]) == 35)
+	if(*(dados[0]) >= 35)
 		*(dados[6]) = 0;
-	if(*(dados[0]) == 0)
+	if(*(dados[0]) <= 0)
 	{
 		*(dados[6]) = 1;
 		exit = 0;
